@@ -88,7 +88,16 @@ const QuizContainer = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
+      {/* Background Logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img 
+          src={logo} 
+          alt="" 
+          className="w-[80vw] max-w-xl opacity-[0.04] object-contain"
+        />
+      </div>
+
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-4">
         <div className="max-w-lg mx-auto space-y-4">
