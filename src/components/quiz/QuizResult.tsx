@@ -58,8 +58,17 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 animate-fade-in">
-      <div className="max-w-lg w-full space-y-8">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 animate-fade-in relative overflow-hidden">
+      {/* Background Logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img 
+          src={logo} 
+          alt="" 
+          className="w-[80vw] max-w-xl opacity-[0.04] object-contain"
+        />
+      </div>
+
+      <div className="max-w-lg w-full space-y-8 relative z-10">
         {/* Logo */}
         <div className="flex justify-center">
           <img 
