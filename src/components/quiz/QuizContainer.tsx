@@ -1,0 +1,149 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { quizBlocks, getTotalQuestions } from "@/data/quizQuestions";
+import QuizStart from "./QuizStart";
+import QuizProgress from "./QuizProgress";
+import QuizQuestion from "./QuizQuestion";
+import QuizResult from "./QuizResult";
+import logo from "@/assets/logo-joga-junto.png";
+
+type QuizState = "start" | "questions" | "result";
+
+const QuizContainer = () => {
+  const [quizState, setQuizState] = useState<QuizState>("start");
+  const [currentBlockIndex, setCurrentBlockIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+
+  const totalQuestions = getTotalQuestions();
+  const currentBlock = quizBlocks[currentBlockIndex];
+  const currentQuestion = currentBlock?.questions[currentQuestionIndex];
+
+  const handleStart = () => {
+    setQuizState("questions");
+  };
+
+  const handleSelectOption = (value: number) => {
+    if (!currentQuestion) return;
+    
+    setAnswers((prev) => ({
+      ...prev,
+      [currentQuestion.id]: value,
+    }));
+  };
+
+  const handleNext = () => {
+    if (!currentQuestion) return;
+
+    // Check if there are more questions in current block
+    if (currentQuestionIndex < currentBlock.questions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } 
+    // Check if there are more blocks
+    else if (currentBlockIndex < quizBlocks.length - 1) {
+      setCurrentBlockIndex((prev) => prev + 1);
+      setCurrentQuestionIndex(0);
+    } 
+    // Quiz completed
+    else {
+      setQuizState("result");
+    }
+  };
+
+  const handleBack = () => {
+    // Check if we can go back in current block
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
+    } 
+    // Check if we can go to previous block
+    else if (currentBlockIndex > 0) {
+      const previousBlock = quizBlocks[currentBlockIndex - 1];
+      setCurrentBlockIndex((prev) => prev - 1);
+      setCurrentQuestionIndex(previousBlock.questions.length - 1);
+    }
+  };
+
+  const handleRestart = () => {
+    setQuizState("start");
+    setCurrentBlockIndex(0);
+    setCurrentQuestionIndex(0);
+    setAnswers({});
+  };
+
+  const isFirstQuestion = currentBlockIndex === 0 && currentQuestionIndex === 0;
+  const hasSelectedOption = currentQuestion && answers[currentQuestion.id] !== undefined;
+
+  // Calculate global question number
+  const globalQuestionNumber = quizBlocks
+    .slice(0, currentBlockIndex)
+    .reduce((acc, block) => acc + block.questions.length, 0) + currentQuestionIndex + 1;
+
+  if (quizState === "start") {
+    return <QuizStart onStart={handleStart} />;
+  }
+
+  if (quizState === "result") {
+    return <QuizResult answers={answers} onRestart={handleRestart} />;
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-4 py-4">
+        <div className="max-w-lg mx-auto space-y-4">
+          <div className="flex items-center justify-center">
+            <img src={logo} alt="Joga Junto" className="h-10 object-contain" />
+          </div>
+          <QuizProgress 
+            currentBlockIndex={currentBlockIndex}
+            currentQuestionInBlock={currentQuestionIndex}
+            totalQuestionsInBlock={currentBlock.questions.length}
+          />
+        </div>
+      </header>
+
+      {/* Question Content */}
+      <main className="flex-1 flex items-center justify-center px-4 py-8">
+        <div className="max-w-lg w-full">
+          <QuizQuestion 
+            key={currentQuestion.id}
+            question={currentQuestion}
+            blockColor={currentBlock.color}
+            selectedOption={answers[currentQuestion.id] ?? null}
+            onSelectOption={handleSelectOption}
+            questionNumber={globalQuestionNumber}
+          />
+        </div>
+      </main>
+
+      {/* Navigation */}
+      <footer className="sticky bottom-0 bg-background/95 backdrop-blur-sm border-t border-border px-4 py-4">
+        <div className="max-w-lg mx-auto flex gap-3">
+          <Button
+            variant="outline"
+            onClick={handleBack}
+            disabled={isFirstQuestion}
+            className="flex-1"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Voltar
+          </Button>
+          <Button
+            onClick={handleNext}
+            disabled={!hasSelectedOption}
+            className="flex-1 bg-primary hover:bg-accent text-primary-foreground"
+          >
+            {currentBlockIndex === quizBlocks.length - 1 && 
+             currentQuestionIndex === currentBlock.questions.length - 1 
+              ? "Ver Resultado" 
+              : "Próxima"}
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default QuizContainer;
