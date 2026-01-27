@@ -88,19 +88,19 @@ const QuizContainer = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-primary">
-      {/* Background Logo */}
+    <div className="h-[100dvh] flex flex-col relative overflow-hidden bg-primary">
+      {/* Background Logo - centered and subtle */}
       <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
         <img 
           src={logo} 
           alt="" 
-          className="w-[90vw] max-w-2xl opacity-[0.08] object-contain"
+          className="w-[70vw] max-w-md opacity-[0.06] object-contain"
         />
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-10 bg-primary/95 backdrop-blur-sm border-b border-primary-foreground/10 px-4 py-4">
-        <div className="max-w-lg mx-auto">
+      {/* Header - Compact */}
+      <header className="flex-shrink-0 z-10 bg-primary/95 backdrop-blur-sm border-b border-primary-foreground/10 px-4 py-3">
+        <div className="max-w-md mx-auto">
           <QuizProgress 
             currentBlockIndex={currentBlockIndex}
             currentQuestionInBlock={currentQuestionIndex}
@@ -109,9 +109,9 @@ const QuizContainer = () => {
         </div>
       </header>
 
-      {/* Question Content */}
-      <main className="flex-1 flex items-center justify-center px-4 py-8 relative z-10">
-        <div className="max-w-lg w-full bg-card/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-border">
+      {/* Question Content - Centered */}
+      <main className="flex-1 flex items-center justify-center px-4 py-4 relative z-10 overflow-y-auto">
+        <div className="max-w-md w-full bg-card/95 backdrop-blur-sm rounded-3xl p-5 shadow-2xl border border-border my-auto">
           <QuizQuestion 
             key={currentQuestion.id}
             question={currentQuestion}
@@ -123,28 +123,28 @@ const QuizContainer = () => {
         </div>
       </main>
 
-      {/* Navigation */}
-      <footer className="sticky bottom-0 bg-primary/95 backdrop-blur-sm border-t border-primary-foreground/10 px-4 py-4 z-10">
-        <div className="max-w-lg mx-auto flex gap-3">
+      {/* Navigation - Fixed bottom */}
+      <footer className="flex-shrink-0 bg-primary/95 backdrop-blur-sm border-t border-primary-foreground/10 px-4 py-3 z-10">
+        <div className="max-w-md mx-auto flex gap-3">
           <Button
             variant="outline"
             onClick={handleBack}
             disabled={isFirstQuestion}
-            className="flex-1"
+            className="flex-1 h-12 text-base font-semibold rounded-xl"
           >
-            <ChevronLeft className="w-4 h-4 mr-1" />
+            <ChevronLeft className="w-5 h-5 mr-1" />
             Voltar
           </Button>
           <Button
             onClick={handleNext}
             disabled={!hasSelectedOption}
-            className="flex-1 bg-primary hover:bg-accent text-primary-foreground"
+            className="flex-1 h-12 text-base font-semibold rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground transition-all active:scale-[0.98]"
           >
             {currentBlockIndex === quizBlocks.length - 1 && 
              currentQuestionIndex === currentBlock.questions.length - 1 
               ? "Ver Resultado" 
               : "Próxima"}
-            <ChevronRight className="w-4 h-4 ml-1" />
+            <ChevronRight className="w-5 h-5 ml-1" />
           </Button>
         </div>
       </footer>
