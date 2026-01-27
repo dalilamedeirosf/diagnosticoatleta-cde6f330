@@ -155,19 +155,24 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                 <h3 className="font-bold text-sm text-white tracking-wide">Pontuação por Área</h3>
               </div>
               
-              <div className="grid grid-cols-3 gap-3 flex-1">
+              <div className="grid grid-cols-2 gap-3 flex-1">
                 {blockScores.map(({ block, percentage }) => (
                   <div key={block.id} className="relative group">
                     <div className={`absolute inset-0 bg-gradient-to-br ${blockColorMap[block.color].gradient} rounded-xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity`} />
-                    <div className="relative bg-white/5 hover:bg-white/10 rounded-xl p-3 flex flex-col items-center justify-center border border-white/10 transition-all hover:scale-[1.02] hover:border-white/20">
-                      <span className="text-2xl mb-2 drop-shadow-lg">{block.emoji}</span>
-                      <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                        <div 
-                          className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient} shadow-[0_0_10px_currentColor]`}
-                          style={{ width: `${percentage}%` }}
-                        />
+                    <div className="relative bg-gradient-to-br from-white/10 to-white/5 hover:from-white/15 hover:to-white/10 rounded-xl p-3 flex flex-col border border-white/15 transition-all hover:scale-[1.02] hover:border-white/25 shadow-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xl">{block.emoji}</span>
+                        <span className="text-xs font-semibold text-white/90 leading-tight flex-1">{block.title.split('(')[0].trim()}</span>
                       </div>
-                      <span className="text-sm font-bold text-white mt-2 drop-shadow-lg">{percentage}%</span>
+                      <div className="flex items-center gap-2 mt-auto">
+                        <div className="flex-1 bg-black/30 rounded-full h-2 overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient} shadow-[0_0_10px_currentColor]`}
+                            style={{ width: `${percentage}%` }}
+                          />
+                        </div>
+                        <span className={`text-sm font-black bg-gradient-to-r ${blockColorMap[block.color].gradient} bg-clip-text text-transparent drop-shadow-lg`}>{percentage}%</span>
+                      </div>
                     </div>
                   </div>
                 ))}
