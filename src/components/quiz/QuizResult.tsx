@@ -64,7 +64,7 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
         <img 
           src={logo} 
           alt="" 
-          className="w-[80vw] max-w-xl opacity-[0.04] object-contain animate-spin-slow"
+          className="w-[80vw] max-w-xl opacity-[0.04] object-contain"
         />
       </div>
 
