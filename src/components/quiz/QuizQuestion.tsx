@@ -148,25 +148,20 @@ const QuizQuestion = ({
   const hasImages = question.options.some(opt => opt.image && optionImages[opt.image]);
 
   return (
-    <div className="w-full space-y-8 animate-slide-in">
-      {/* Question */}
-      <div className="space-y-3">
-        <span className="text-base font-semibold text-muted-foreground">
+    <div className="w-full space-y-5 animate-slide-in">
+      {/* Question - Centered */}
+      <div className="space-y-2 text-center">
+        <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
           Pergunta {questionNumber}
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+        <h2 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
           {question.question}
         </h2>
       </div>
 
       {/* Options */}
       {hasImages ? (
-        <div className={cn(
-          "grid gap-4",
-          question.options.length % 2 === 1 
-            ? "grid-cols-2" 
-            : "grid-cols-2"
-        )}>
+        <div className="grid grid-cols-2 gap-3">
           {question.options.map((option, index) => {
             const isLastOdd = question.options.length % 2 === 1 && index === question.options.length - 1;
             return (
@@ -174,23 +169,23 @@ const QuizQuestion = ({
                 key={index}
                 onClick={() => onSelectOption(option.value)}
                 className={cn(
-                  "flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200",
-                  "hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md",
+                  "flex flex-col items-center p-3 rounded-2xl border-2 transition-all duration-150",
+                  "hover:scale-[1.03] active:scale-[0.97] shadow-sm hover:shadow-lg",
                   selectedOption === option.value
                     ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
                     : "bg-card border-border hover:border-primary/50 hover:bg-secondary/30",
-                  isLastOdd && "col-span-2 max-w-[50%] mx-auto"
+                  isLastOdd && "col-span-2 max-w-[48%] mx-auto"
                 )}
               >
                 {option.image && optionImages[option.image] && (
                   <img 
                     src={optionImages[option.image]} 
                     alt={option.label}
-                    className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover mb-3 border-2 border-background shadow-lg"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 border-2 border-background shadow-md"
                   />
                 )}
                 <span className={cn(
-                  "text-base font-semibold text-center leading-snug",
+                  "text-sm md:text-base font-semibold text-center leading-tight",
                   selectedOption === option.value 
                     ? "text-foreground" 
                     : "text-foreground/80"
@@ -202,29 +197,29 @@ const QuizQuestion = ({
           })}
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3">
           {question.options.map((option, index) => (
             <button
               key={index}
               onClick={() => onSelectOption(option.value)}
               className={cn(
-                "w-full p-5 md:p-6 text-left rounded-2xl border-2 transition-all duration-200",
-                "hover:scale-[1.01] active:scale-[0.99] shadow-sm hover:shadow-md",
+                "w-full p-4 text-left rounded-xl border-2 transition-all duration-150",
+                "hover:scale-[1.01] active:scale-[0.98] shadow-sm hover:shadow-md",
                 selectedOption === option.value
                   ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
                   : "bg-card border-border hover:border-primary/50 hover:bg-secondary/30"
               )}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <div className={cn(
-                  "w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0",
+                  "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
                   selectedOption === option.value 
                     ? styles.border
                     : "border-muted-foreground/30"
                 )}>
                   {selectedOption === option.value && (
                     <div className={cn(
-                      "w-3 h-3 rounded-full",
+                      "w-2.5 h-2.5 rounded-full",
                       blockColor === 'green' && "bg-quiz-green",
                       blockColor === 'yellow' && "bg-quiz-yellow",
                       blockColor === 'blue' && "bg-quiz-blue",
@@ -235,7 +230,7 @@ const QuizQuestion = ({
                   )}
                 </div>
                 <span className={cn(
-                  "text-lg font-medium",
+                  "text-base font-medium",
                   selectedOption === option.value 
                     ? "text-foreground" 
                     : "text-foreground/80"
