@@ -102,5 +102,27 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Safe area support for iOS */
+  .safe-area-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  /* Prevent overscroll bounce on iOS */
+  html, body {
+    overscroll-behavior: none;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
   }
 }
