@@ -192,13 +192,13 @@ const QuizQuestion = ({
   const hasImages = question.options.some(opt => opt.image && optionImages[opt.image]);
 
   return (
-    <div className="w-full space-y-5 animate-slide-in">
+    <div className="w-full space-y-5 animate-fade-in">
       {/* Question - Centered */}
       <div className="space-y-2 text-center">
-        <span className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-bold text-sky-600/80 uppercase tracking-[0.2em]">
           Pergunta {questionNumber}
         </span>
-        <h2 className="text-xl md:text-2xl font-bold text-foreground leading-snug">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-800 leading-snug">
           {question.question}
         </h2>
       </div>
@@ -208,82 +208,111 @@ const QuizQuestion = ({
         <div className="grid grid-cols-2 gap-3">
           {question.options.map((option, index) => {
             const isLastOdd = question.options.length % 2 === 1 && index === question.options.length - 1;
+            const isSelected = selectedOption === option.value;
             return (
               <button
                 key={index}
                 onClick={() => onSelectOption(option.value)}
                 className={cn(
-                  "flex flex-col items-center p-3 rounded-2xl border-2 transition-all duration-150",
-                  "hover:scale-[1.02] active:scale-[0.97] shadow-sm",
-                  selectedOption === option.value
-                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-md`
-                    : "bg-card border-border hover:border-primary/50",
+                  "relative flex flex-col items-center p-3 rounded-2xl border-2 transition-all duration-200",
+                  "hover:scale-[1.02] active:scale-[0.97] group",
+                  isSelected
+                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
+                    : "bg-white/80 border-slate-200 hover:border-sky-300 hover:shadow-md",
                   isLastOdd && "col-span-2 max-w-[48%] mx-auto"
                 )}
               >
-                {option.image && optionImages[option.image] && (
-                  <img 
-                    src={optionImages[option.image]} 
-                    alt={option.label}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 border border-background shadow-sm"
-                  />
+                {/* Glow effect on selected */}
+                {isSelected && (
+                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${
+                    blockColor === 'green' ? 'from-emerald-400 to-emerald-600' :
+                    blockColor === 'yellow' ? 'from-amber-400 to-amber-600' :
+                    blockColor === 'blue' ? 'from-sky-400 to-sky-600' :
+                    blockColor === 'purple' ? 'from-violet-400 to-violet-600' :
+                    blockColor === 'orange' ? 'from-orange-400 to-orange-600' :
+                    'from-rose-400 to-rose-600'
+                  } rounded-2xl blur opacity-30`} />
                 )}
-                <span className={cn(
-                  "text-sm md:text-base font-bold text-center leading-tight",
-                  selectedOption === option.value 
-                    ? "text-foreground" 
-                    : "text-foreground/80"
-                )}>
-                  {option.label}
-                </span>
+                
+                <div className="relative z-10 flex flex-col items-center">
+                  {option.image && optionImages[option.image] && (
+                    <img 
+                      src={optionImages[option.image]} 
+                      alt={option.label}
+                      className={cn(
+                        "w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 shadow-md transition-all",
+                        isSelected ? "ring-2 ring-white shadow-lg" : "group-hover:shadow-lg"
+                      )}
+                    />
+                  )}
+                  <span className={cn(
+                    "text-sm md:text-base font-bold text-center leading-tight",
+                    isSelected ? "text-slate-800" : "text-slate-700"
+                  )}>
+                    {option.label}
+                  </span>
+                </div>
               </button>
             );
           })}
         </div>
       ) : (
         <div className="space-y-3">
-          {question.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => onSelectOption(option.value)}
-              className={cn(
-                "w-full p-4 text-left rounded-xl border-2 transition-all duration-150",
-                "hover:scale-[1.01] active:scale-[0.98] shadow-sm",
-                selectedOption === option.value
-                  ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-md`
-                  : "bg-card border-border hover:border-primary/50"
-              )}
-            >
-              <div className="flex items-center gap-4">
-                <div className={cn(
-                  "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
-                  selectedOption === option.value 
-                    ? styles.border
-                    : "border-muted-foreground/30"
-                )}>
-                  {selectedOption === option.value && (
-                    <div className={cn(
-                      "w-2.5 h-2.5 rounded-full",
-                      blockColor === 'green' && "bg-quiz-green",
-                      blockColor === 'yellow' && "bg-quiz-yellow",
-                      blockColor === 'blue' && "bg-quiz-blue",
-                      blockColor === 'purple' && "bg-quiz-purple",
-                      blockColor === 'orange' && "bg-quiz-orange",
-                      blockColor === 'red' && "bg-quiz-red",
-                    )} />
-                  )}
+          {question.options.map((option, index) => {
+            const isSelected = selectedOption === option.value;
+            return (
+              <button
+                key={index}
+                onClick={() => onSelectOption(option.value)}
+                className={cn(
+                  "relative w-full p-4 text-left rounded-xl border-2 transition-all duration-200",
+                  "hover:scale-[1.01] active:scale-[0.98] group",
+                  isSelected
+                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
+                    : "bg-white/80 border-slate-200 hover:border-sky-300 hover:shadow-md"
+                )}
+              >
+                {/* Glow effect on selected */}
+                {isSelected && (
+                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${
+                    blockColor === 'green' ? 'from-emerald-400 to-emerald-600' :
+                    blockColor === 'yellow' ? 'from-amber-400 to-amber-600' :
+                    blockColor === 'blue' ? 'from-sky-400 to-sky-600' :
+                    blockColor === 'purple' ? 'from-violet-400 to-violet-600' :
+                    blockColor === 'orange' ? 'from-orange-400 to-orange-600' :
+                    'from-rose-400 to-rose-600'
+                  } rounded-xl blur opacity-25`} />
+                )}
+                
+                <div className="relative z-10 flex items-center gap-4">
+                  <div className={cn(
+                    "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all",
+                    isSelected 
+                      ? `${styles.border} bg-white shadow-md`
+                      : "border-slate-300 group-hover:border-sky-400"
+                  )}>
+                    {isSelected && (
+                      <div className={cn(
+                        "w-2.5 h-2.5 rounded-full shadow-sm",
+                        blockColor === 'green' && "bg-emerald-500",
+                        blockColor === 'yellow' && "bg-amber-500",
+                        blockColor === 'blue' && "bg-sky-500",
+                        blockColor === 'purple' && "bg-violet-500",
+                        blockColor === 'orange' && "bg-orange-500",
+                        blockColor === 'red' && "bg-rose-500",
+                      )} />
+                    )}
+                  </div>
+                  <span className={cn(
+                    "text-base md:text-lg font-semibold",
+                    isSelected ? "text-slate-800" : "text-slate-700"
+                  )}>
+                    {option.label}
+                  </span>
                 </div>
-                <span className={cn(
-                  "text-base md:text-lg font-semibold",
-                  selectedOption === option.value 
-                    ? "text-foreground" 
-                    : "text-foreground/80"
-                )}>
-                  {option.label}
-                </span>
-              </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
