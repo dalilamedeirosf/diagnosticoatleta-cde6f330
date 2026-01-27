@@ -69,17 +69,17 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
         </div>
       </div>
 
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto relative z-10 px-4 py-4 safe-area-top safe-area-bottom">
-        <div className="max-w-md mx-auto space-y-3 animate-fade-in">
+      {/* Full Screen Content */}
+      <div className="flex-1 flex flex-col relative z-10 px-4 py-6 safe-area-top safe-area-bottom">
+        <div className="max-w-lg mx-auto w-full flex-1 flex flex-col justify-between animate-fade-in">
           
-          {/* Header - Compact */}
-          <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-2xl">
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="Joga Junto" className="h-10 object-contain drop-shadow-lg" />
+          {/* Header */}
+          <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-5 border border-white/20 shadow-2xl">
+            <div className="flex items-center gap-4">
+              <img src={logo} alt="Joga Junto" className="h-14 object-contain drop-shadow-lg" />
               
               {/* Score Circle */}
-              <div className="relative w-16 h-16 flex-shrink-0">
+              <div className="relative w-20 h-20 flex-shrink-0">
                 <svg className="w-full h-full transform -rotate-90">
                   <defs>
                     <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -87,75 +87,75 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                       <stop offset="100%" stopColor="hsl(var(--accent))" />
                     </linearGradient>
                   </defs>
-                  <circle cx="32" cy="32" r="26" stroke="currentColor" strokeWidth="5" fill="none" className="text-white/10" />
-                  <circle cx="32" cy="32" r="26" stroke="url(#scoreGradient)" strokeWidth="5" fill="none"
-                    strokeDasharray={`${overallPercentage * 1.634} 163.4`} strokeLinecap="round" />
+                  <circle cx="40" cy="40" r="34" stroke="currentColor" strokeWidth="6" fill="none" className="text-white/10" />
+                  <circle cx="40" cy="40" r="34" stroke="url(#scoreGradient)" strokeWidth="6" fill="none"
+                    strokeDasharray={`${overallPercentage * 2.136} 213.6`} strokeLinecap="round" />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xl font-black text-white">{overallPercentage}%</span>
+                  <span className="text-2xl font-black text-white">{overallPercentage}%</span>
                 </div>
               </div>
               
               {/* Profile */}
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] text-white/50 uppercase tracking-wider">Diagnóstico</p>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <ProfileIcon className={`w-4 h-4 ${profile.color}`} />
-                  <span className={`font-bold text-sm ${profile.color} truncate`}>{profile.level}</span>
+                <p className="text-xs text-white/50 uppercase tracking-wider font-medium">Diagnóstico</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <ProfileIcon className={`w-5 h-5 ${profile.color}`} />
+                  <span className={`font-bold text-lg ${profile.color}`}>{profile.level}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Block Scores Grid */}
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-3 border border-white/20">
-            <div className="flex items-center gap-2 mb-2">
-              <Award className="w-4 h-4 text-primary" />
-              <h3 className="font-bold text-xs text-white">Pontuação por Área</h3>
+          {/* Block Scores Grid - Expanded */}
+          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-white/20 flex-1 my-4 flex flex-col">
+            <div className="flex items-center gap-2 mb-3">
+              <Award className="w-5 h-5 text-primary" />
+              <h3 className="font-bold text-sm text-white">Pontuação por Área</h3>
             </div>
             
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-3 gap-3 flex-1">
               {blockScores.map(({ block, percentage }) => (
-                <div key={block.id} className="bg-white/5 rounded-lg p-2 text-center">
-                  <span className="text-lg">{block.emoji}</span>
-                  <div className="w-full bg-white/10 rounded-full h-1 mt-1 overflow-hidden">
+                <div key={block.id} className="bg-white/5 rounded-xl p-3 flex flex-col items-center justify-center border border-white/10">
+                  <span className="text-2xl mb-2">{block.emoji}</span>
+                  <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
                     <div 
                       className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient}`}
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
-                  <span className="text-[10px] font-bold text-white/80 mt-1 block">{percentage}%</span>
+                  <span className="text-sm font-bold text-white mt-2">{percentage}%</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Insights - Compact */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-emerald-500/20 backdrop-blur rounded-xl p-2.5 border border-emerald-400/30">
-              <div className="flex items-center gap-1 mb-1">
-                <Zap className="w-3 h-3 text-emerald-400" />
-                <span className="font-bold text-emerald-400 text-[10px]">Ponto Forte</span>
+          {/* Insights */}
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="bg-emerald-500/20 backdrop-blur rounded-xl p-4 border border-emerald-400/30">
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="w-4 h-4 text-emerald-400" />
+                <span className="font-bold text-emerald-400 text-xs">Ponto Forte</span>
               </div>
-              <p className="text-[10px] text-white/70 truncate">{strongestArea.block.title.split('(')[0].trim()}</p>
-              <p className="text-lg font-black text-emerald-400">{strongestArea.percentage}%</p>
+              <p className="text-xs text-white/70 mb-1">{strongestArea.block.title.split('(')[0].trim()}</p>
+              <p className="text-2xl font-black text-emerald-400">{strongestArea.percentage}%</p>
             </div>
             
-            <div className="bg-orange-500/20 backdrop-blur rounded-xl p-2.5 border border-orange-400/30">
-              <div className="flex items-center gap-1 mb-1">
-                <Target className="w-3 h-3 text-orange-400" />
-                <span className="font-bold text-orange-400 text-[10px]">Área de Foco</span>
+            <div className="bg-orange-500/20 backdrop-blur rounded-xl p-4 border border-orange-400/30">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="w-4 h-4 text-orange-400" />
+                <span className="font-bold text-orange-400 text-xs">Área de Foco</span>
               </div>
-              <p className="text-[10px] text-white/70 truncate">{weakestArea.block.title.split('(')[0].trim()}</p>
-              <p className="text-lg font-black text-orange-400">{weakestArea.percentage}%</p>
+              <p className="text-xs text-white/70 mb-1">{weakestArea.block.title.split('(')[0].trim()}</p>
+              <p className="text-2xl font-black text-orange-400">{weakestArea.percentage}%</p>
             </div>
           </div>
 
           {/* Recommendation */}
-          <div className="bg-white/10 backdrop-blur rounded-xl p-3 border border-white/20">
-            <div className="flex items-start gap-2">
-              <Star className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-white/70 leading-relaxed">
+          <div className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/20 mb-4">
+            <div className="flex items-start gap-3">
+              <Star className="w-5 h-5 text-amber-400 flex-shrink-0" />
+              <p className="text-sm text-white/80 leading-relaxed">
                 Focar em <strong className="text-white">{weakestArea.block.title}</strong> pode acelerar o desenvolvimento.
               </p>
             </div>
@@ -165,13 +165,13 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
           <Button 
             onClick={onRestart}
             size="lg"
-            className="w-full h-12 text-sm font-bold bg-gradient-to-r from-primary to-accent text-white hover:opacity-90 rounded-xl shadow-xl transition-all active:scale-[0.98]"
+            className="w-full h-14 text-base font-bold bg-gradient-to-r from-primary to-accent text-white hover:opacity-90 rounded-xl shadow-xl transition-all active:scale-[0.98]"
           >
-            <RefreshCw className="w-4 h-4 mr-2" />
+            <RefreshCw className="w-5 h-5 mr-2" />
             Refazer Diagnóstico
           </Button>
           
-          <p className="text-center text-[10px] text-white/30 pb-1">
+          <p className="text-center text-xs text-white/30 mt-3">
             Powered by Joga Junto
           </p>
         </div>
