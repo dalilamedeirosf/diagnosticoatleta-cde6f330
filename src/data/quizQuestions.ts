@@ -50,20 +50,20 @@ export const quizBlocks: QuizBlock[] = [
         id: 3,
         question: "Atualmente ele treina:",
         options: [
-          { label: "1–2x por semana", value: 1 },
-          { label: "3x por semana", value: 2 },
-          { label: "4–5x por semana", value: 3 },
-          { label: "Todos os dias", value: 4 },
+          { label: "1–2x por semana", value: 1, image: "train-1-2x" },
+          { label: "3x por semana", value: 2, image: "train-3x" },
+          { label: "4–5x por semana", value: 3, image: "train-4-5x" },
+          { label: "Todos os dias", value: 4, image: "train-daily" },
         ],
       },
       {
         id: 4,
         question: "Onde ele joga hoje?",
         options: [
-          { label: "Escola / projeto social", value: 1 },
-          { label: "Clube pequeno / local", value: 2 },
-          { label: "Clube estruturado", value: 3 },
-          { label: "Clube de base tradicional", value: 4 },
+          { label: "Escola / projeto social", value: 1, image: "place-school" },
+          { label: "Clube pequeno / local", value: 2, image: "place-local" },
+          { label: "Clube estruturado", value: 3, image: "place-structured" },
+          { label: "Clube de base tradicional", value: 4, image: "place-academy" },
         ],
       },
       {

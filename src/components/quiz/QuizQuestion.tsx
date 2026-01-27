@@ -8,12 +8,32 @@ import age14 from "@/assets/age-14.jpg";
 import age16 from "@/assets/age-16.jpg";
 import age17 from "@/assets/age-17.jpg";
 
-const ageImages: Record<string, string> = {
+// Training frequency images
+import train12x from "@/assets/train-1-2x.jpg";
+import train3x from "@/assets/train-3x.jpg";
+import train45x from "@/assets/train-4-5x.jpg";
+import trainDaily from "@/assets/train-daily.jpg";
+
+// Place images
+import placeSchool from "@/assets/place-school.jpg";
+import placeLocal from "@/assets/place-local.jpg";
+import placeStructured from "@/assets/place-structured.jpg";
+import placeAcademy from "@/assets/place-academy.jpg";
+
+const optionImages: Record<string, string> = {
   "age-10": age10,
   "age-12": age12,
   "age-14": age14,
   "age-16": age16,
   "age-17": age17,
+  "train-1-2x": train12x,
+  "train-3x": train3x,
+  "train-4-5x": train45x,
+  "train-daily": trainDaily,
+  "place-school": placeSchool,
+  "place-local": placeLocal,
+  "place-structured": placeStructured,
+  "place-academy": placeAcademy,
 };
 
 interface QuizQuestionProps {
@@ -65,7 +85,7 @@ const QuizQuestion = ({
   questionNumber 
 }: QuizQuestionProps) => {
   const styles = colorStyles[blockColor];
-  const hasImages = question.options.some(opt => opt.image && ageImages[opt.image]);
+  const hasImages = question.options.some(opt => opt.image && optionImages[opt.image]);
 
   return (
     <div className="w-full space-y-6 animate-slide-in">
@@ -94,9 +114,9 @@ const QuizQuestion = ({
                   : "bg-card border-border hover:border-primary/50 hover:bg-secondary/50"
               )}
             >
-              {option.image && ageImages[option.image] && (
+              {option.image && optionImages[option.image] && (
                 <img 
-                  src={ageImages[option.image]} 
+                  src={optionImages[option.image]} 
                   alt={option.label}
                   className="w-20 h-20 rounded-full object-cover mb-2 border-2 border-background shadow-md"
                 />
