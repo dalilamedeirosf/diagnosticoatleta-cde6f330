@@ -20,6 +20,46 @@ import placeLocal from "@/assets/place-local.jpg";
 import placeStructured from "@/assets/place-structured.jpg";
 import placeAcademy from "@/assets/place-academy.jpg";
 
+// Q6 - Risk taking
+import q6Safe from "@/assets/q6-safe.jpg";
+import q6Leader from "@/assets/q6-leader.jpg";
+
+// Q8 - Training vs Match
+import q8Training from "@/assets/q8-training.jpg";
+import q8Match from "@/assets/q8-match.jpg";
+
+// Q10 - Weakness
+import q10Physical from "@/assets/q10-physical.jpg";
+import q10Confidence from "@/assets/q10-confidence.jpg";
+
+// Q12 - Big games
+import q12Freeze from "@/assets/q12-freeze.jpg";
+import q12Rise from "@/assets/q12-rise.jpg";
+
+// Q14 - Self belief
+import q14Doubt from "@/assets/q14-doubt.jpg";
+import q14Believe from "@/assets/q14-believe.jpg";
+
+// Q16 - Family attitude
+import q16Hobby from "@/assets/q16-hobby.jpg";
+import q16Priority from "@/assets/q16-priority.jpg";
+
+// Q18 - Family reaction good games
+import q18Demand from "@/assets/q18-demand.jpg";
+import q18Celebrate from "@/assets/q18-celebrate.jpg";
+
+// Q20 - Screen time
+import q20ScreensHigh from "@/assets/q20-screens-high.jpg";
+import q20ScreensLow from "@/assets/q20-screens-low.jpg";
+
+// Q22 - Dream
+import q22Fun from "@/assets/q22-fun.jpg";
+import q22Pro from "@/assets/q22-pro.jpg";
+
+// Q24 - Blocker
+import q24Direction from "@/assets/q24-direction.jpg";
+import q24All from "@/assets/q24-all.jpg";
+
 const optionImages: Record<string, string> = {
   "age-10": age10,
   "age-12": age12,
@@ -34,6 +74,26 @@ const optionImages: Record<string, string> = {
   "place-local": placeLocal,
   "place-structured": placeStructured,
   "place-academy": placeAcademy,
+  "q6-safe": q6Safe,
+  "q6-leader": q6Leader,
+  "q8-training": q8Training,
+  "q8-match": q8Match,
+  "q10-physical": q10Physical,
+  "q10-confidence": q10Confidence,
+  "q12-freeze": q12Freeze,
+  "q12-rise": q12Rise,
+  "q14-doubt": q14Doubt,
+  "q14-believe": q14Believe,
+  "q16-hobby": q16Hobby,
+  "q16-priority": q16Priority,
+  "q18-demand": q18Demand,
+  "q18-celebrate": q18Celebrate,
+  "q20-screens-high": q20ScreensHigh,
+  "q20-screens-low": q20ScreensLow,
+  "q22-fun": q22Fun,
+  "q22-pro": q22Pro,
+  "q24-direction": q24Direction,
+  "q24-all": q24All,
 };
 
 interface QuizQuestionProps {
