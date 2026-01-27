@@ -121,10 +121,6 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/60 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
           <span className="flex items-center gap-1.5 text-sm">
-            <span className="text-base">📊</span> Gratuito
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/60 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
-          <span className="flex items-center gap-1.5 text-sm">
             <span className="text-base">🎯</span> Preciso
           </span>
         </div>
