@@ -157,10 +157,10 @@ const QuizContainer = () => {
         <div className="max-w-md mx-auto flex gap-3">
           <div className="relative flex-1">
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={handleBack}
               disabled={isFirstQuestion}
-              className="w-full h-12 text-base font-semibold rounded-xl bg-white/5 border-white/15 text-white hover:bg-white/10 backdrop-blur-sm disabled:opacity-30"
+              className="w-full h-12 text-base font-semibold rounded-xl bg-white/5 border border-white/15 text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm disabled:opacity-30 [-webkit-appearance:none]"
             >
               <ChevronLeft className="w-5 h-5 mr-1" />
               Voltar
