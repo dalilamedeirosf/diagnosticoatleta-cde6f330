@@ -195,10 +195,10 @@ const QuizQuestion = ({
     <div className="w-full space-y-5 animate-fade-in">
       {/* Question - Centered */}
       <div className="space-y-2 text-center">
-        <span className="text-xs font-bold text-sky-600/80 uppercase tracking-[0.2em]">
+        <span className="text-xs font-bold text-cyan-400/80 uppercase tracking-[0.2em]">
           Pergunta {questionNumber}
         </span>
-        <h2 className="text-xl md:text-2xl font-bold text-slate-800 leading-snug">
+        <h2 className="text-xl md:text-2xl font-bold text-white leading-snug drop-shadow-lg">
           {question.question}
         </h2>
       </div>
@@ -217,21 +217,14 @@ const QuizQuestion = ({
                   "relative flex flex-col items-center p-3 rounded-2xl border-2 transition-all duration-200",
                   "hover:scale-[1.02] active:scale-[0.97] group",
                   isSelected
-                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
-                    : "bg-white/80 border-slate-200 hover:border-sky-300 hover:shadow-md",
+                    ? "bg-white/15 border-cyan-400/50 ring-2 ring-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+                    : "bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/10",
                   isLastOdd && "col-span-2 max-w-[48%] mx-auto"
                 )}
               >
                 {/* Glow effect on selected */}
                 {isSelected && (
-                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${
-                    blockColor === 'green' ? 'from-emerald-400 to-emerald-600' :
-                    blockColor === 'yellow' ? 'from-amber-400 to-amber-600' :
-                    blockColor === 'blue' ? 'from-sky-400 to-sky-600' :
-                    blockColor === 'purple' ? 'from-violet-400 to-violet-600' :
-                    blockColor === 'orange' ? 'from-orange-400 to-orange-600' :
-                    'from-rose-400 to-rose-600'
-                  } rounded-2xl blur opacity-30`} />
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur opacity-30" />
                 )}
                 
                 <div className="relative z-10 flex flex-col items-center">
@@ -240,14 +233,14 @@ const QuizQuestion = ({
                       src={optionImages[option.image]} 
                       alt={option.label}
                       className={cn(
-                        "w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 shadow-md transition-all",
-                        isSelected ? "ring-2 ring-white shadow-lg" : "group-hover:shadow-lg"
+                        "w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 transition-all",
+                        isSelected ? "ring-2 ring-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]" : "group-hover:shadow-lg opacity-90 group-hover:opacity-100"
                       )}
                     />
                   )}
                   <span className={cn(
                     "text-sm md:text-base font-bold text-center leading-tight",
-                    isSelected ? "text-slate-800" : "text-slate-700"
+                    isSelected ? "text-white" : "text-white/80"
                   )}>
                     {option.label}
                   </span>
@@ -268,44 +261,29 @@ const QuizQuestion = ({
                   "relative w-full p-4 text-left rounded-xl border-2 transition-all duration-200",
                   "hover:scale-[1.01] active:scale-[0.98] group",
                   isSelected
-                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
-                    : "bg-white/80 border-slate-200 hover:border-sky-300 hover:shadow-md"
+                    ? "bg-white/15 border-cyan-400/50 ring-2 ring-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+                    : "bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/10"
                 )}
               >
                 {/* Glow effect on selected */}
                 {isSelected && (
-                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${
-                    blockColor === 'green' ? 'from-emerald-400 to-emerald-600' :
-                    blockColor === 'yellow' ? 'from-amber-400 to-amber-600' :
-                    blockColor === 'blue' ? 'from-sky-400 to-sky-600' :
-                    blockColor === 'purple' ? 'from-violet-400 to-violet-600' :
-                    blockColor === 'orange' ? 'from-orange-400 to-orange-600' :
-                    'from-rose-400 to-rose-600'
-                  } rounded-xl blur opacity-25`} />
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl blur opacity-25" />
                 )}
                 
                 <div className="relative z-10 flex items-center gap-4">
                   <div className={cn(
                     "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all",
                     isSelected 
-                      ? `${styles.border} bg-white shadow-md`
-                      : "border-slate-300 group-hover:border-sky-400"
+                      ? "border-cyan-400 bg-cyan-400/20 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+                      : "border-white/30 group-hover:border-cyan-400/50"
                   )}>
                     {isSelected && (
-                      <div className={cn(
-                        "w-2.5 h-2.5 rounded-full shadow-sm",
-                        blockColor === 'green' && "bg-emerald-500",
-                        blockColor === 'yellow' && "bg-amber-500",
-                        blockColor === 'blue' && "bg-sky-500",
-                        blockColor === 'purple' && "bg-violet-500",
-                        blockColor === 'orange' && "bg-orange-500",
-                        blockColor === 'red' && "bg-rose-500",
-                      )} />
+                      <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                     )}
                   </div>
                   <span className={cn(
                     "text-base md:text-lg font-semibold",
-                    isSelected ? "text-slate-800" : "text-slate-700"
+                    isSelected ? "text-white" : "text-white/80"
                   )}>
                     {option.label}
                   </span>
