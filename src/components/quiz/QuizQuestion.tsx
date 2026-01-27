@@ -161,36 +161,45 @@ const QuizQuestion = ({
 
       {/* Options */}
       {hasImages ? (
-        <div className="grid grid-cols-2 gap-4">
-          {question.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => onSelectOption(option.value)}
-              className={cn(
-                "flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200",
-                "hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md",
-                selectedOption === option.value
-                  ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
-                  : "bg-card border-border hover:border-primary/50 hover:bg-secondary/30"
-              )}
-            >
-              {option.image && optionImages[option.image] && (
-                <img 
-                  src={optionImages[option.image]} 
-                  alt={option.label}
-                  className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover mb-3 border-2 border-background shadow-lg"
-                />
-              )}
-              <span className={cn(
-                "text-base font-semibold text-center leading-snug",
-                selectedOption === option.value 
-                  ? "text-foreground" 
-                  : "text-foreground/80"
-              )}>
-                {option.label}
-              </span>
-            </button>
-          ))}
+        <div className={cn(
+          "grid gap-4",
+          question.options.length % 2 === 1 
+            ? "grid-cols-2" 
+            : "grid-cols-2"
+        )}>
+          {question.options.map((option, index) => {
+            const isLastOdd = question.options.length % 2 === 1 && index === question.options.length - 1;
+            return (
+              <button
+                key={index}
+                onClick={() => onSelectOption(option.value)}
+                className={cn(
+                  "flex flex-col items-center p-4 rounded-2xl border-2 transition-all duration-200",
+                  "hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md",
+                  selectedOption === option.value
+                    ? `${styles.bg} ${styles.border} ring-2 ${styles.ring} shadow-lg`
+                    : "bg-card border-border hover:border-primary/50 hover:bg-secondary/30",
+                  isLastOdd && "col-span-2 max-w-[50%] mx-auto"
+                )}
+              >
+                {option.image && optionImages[option.image] && (
+                  <img 
+                    src={optionImages[option.image]} 
+                    alt={option.label}
+                    className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover mb-3 border-2 border-background shadow-lg"
+                  />
+                )}
+                <span className={cn(
+                  "text-base font-semibold text-center leading-snug",
+                  selectedOption === option.value 
+                    ? "text-foreground" 
+                    : "text-foreground/80"
+                )}>
+                  {option.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       ) : (
         <div className="space-y-4">
