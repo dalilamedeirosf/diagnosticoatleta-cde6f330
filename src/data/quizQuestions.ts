@@ -88,10 +88,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 6,
         question: "Em jogos, o atleta costuma:",
         options: [
-          { label: "Jogar seguro, quase não arrisca", value: 1 },
+          { label: "Jogar seguro, quase não arrisca", value: 1, image: "q6-safe" },
           { label: "Arriscar às vezes", value: 2 },
           { label: "Arriscar com frequência", value: 3 },
-          { label: "Chamar a responsabilidade", value: 4 },
+          { label: "Chamar a responsabilidade", value: 4, image: "q6-leader" },
         ],
       },
       {
@@ -108,10 +108,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 8,
         question: "Comparando treino e jogo, ele rende melhor:",
         options: [
-          { label: "Muito melhor no treino", value: 1 },
+          { label: "Muito melhor no treino", value: 1, image: "q8-training" },
           { label: "Um pouco melhor no treino", value: 2 },
           { label: "Igual", value: 3 },
-          { label: "Melhor no jogo", value: 4 },
+          { label: "Melhor no jogo", value: 4, image: "q8-match" },
         ],
       },
       {
@@ -128,8 +128,8 @@ export const quizBlocks: QuizBlock[] = [
         id: 10,
         question: "Hoje, o maior ponto fraco dentro de campo é:",
         options: [
-          { label: "Condicionamento físico", value: 1 },
-          { label: "Confiança / coragem", value: 2 },
+          { label: "Condicionamento físico", value: 1, image: "q10-physical" },
+          { label: "Confiança / coragem", value: 2, image: "q10-confidence" },
           { label: "Tomada de decisão", value: 3 },
           { label: "Concentração", value: 4 },
           { label: "Não sei dizer", value: 0 },
@@ -157,10 +157,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 12,
         question: "Em jogos importantes, ele costuma:",
         options: [
-          { label: "Travar", value: 1 },
+          { label: "Travar", value: 1, image: "q12-freeze" },
           { label: "Oscilar bastante", value: 2 },
           { label: "Manter o nível", value: 3 },
-          { label: "Crescer", value: 4 },
+          { label: "Crescer", value: 4, image: "q12-rise" },
         ],
       },
       {
@@ -177,10 +177,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 14,
         question: "O atleta acredita no próprio potencial?",
         options: [
-          { label: "Não", value: 1 },
+          { label: "Não", value: 1, image: "q14-doubt" },
           { label: "Às vezes", value: 2 },
           { label: "Sim, mas ainda com dúvidas", value: 3 },
-          { label: "Sim, claramente", value: 4 },
+          { label: "Sim, claramente", value: 4, image: "q14-believe" },
         ],
       },
     ],
@@ -205,10 +205,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 16,
         question: "Em casa, o futebol é tratado como:",
         options: [
-          { label: "Hobby", value: 1 },
+          { label: "Hobby", value: 1, image: "q16-hobby" },
           { label: "Algo importante, mas sem conversa", value: 2 },
           { label: "Projeto em construção", value: 3 },
-          { label: "Prioridade clara", value: 4 },
+          { label: "Prioridade clara", value: 4, image: "q16-priority" },
         ],
       },
       {
@@ -225,10 +225,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 18,
         question: "Após jogos bons, a família:",
         options: [
-          { label: "Cobra mais ainda", value: 1 },
+          { label: "Cobra mais ainda", value: 1, image: "q18-demand" },
           { label: "Age como se fosse obrigação", value: 2 },
           { label: "Reconhece o esforço", value: 3 },
-          { label: "Celebra evolução e atitude", value: 4 },
+          { label: "Celebra evolução e atitude", value: 4, image: "q18-celebrate" },
         ],
       },
     ],
@@ -253,10 +253,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 20,
         question: "Tempo médio de telas por dia (celular/videogame):",
         options: [
-          { label: "Mais de 5h", value: 1 },
+          { label: "Mais de 5h", value: 1, image: "q20-screens-high" },
           { label: "3–4h", value: 2 },
           { label: "1–2h", value: 3 },
-          { label: "Menos de 1h", value: 4 },
+          { label: "Menos de 1h", value: 4, image: "q20-screens-low" },
         ],
       },
       {
@@ -281,10 +281,10 @@ export const quizBlocks: QuizBlock[] = [
         id: 22,
         question: "O maior sonho do atleta no futebol é:",
         options: [
-          { label: "Jogar por diversão", value: 1 },
+          { label: "Jogar por diversão", value: 1, image: "q22-fun" },
           { label: "Ser bom no time atual", value: 2 },
           { label: "Chegar a um clube grande", value: 3 },
-          { label: "Ser profissional", value: 4 },
+          { label: "Ser profissional", value: 4, image: "q22-pro" },
         ],
       },
       {
@@ -301,11 +301,11 @@ export const quizBlocks: QuizBlock[] = [
         id: 24,
         question: "Hoje, o maior travamento do atleta é:",
         options: [
-          { label: "Falta de direção", value: 1 },
+          { label: "Falta de direção", value: 1, image: "q24-direction" },
           { label: "Falta de confiança", value: 2 },
           { label: "Falta de preparo físico", value: 3 },
           { label: "Ambiente confuso", value: 4 },
-          { label: "Tudo um pouco", value: 0 },
+          { label: "Tudo um pouco", value: 0, image: "q24-all" },
         ],
       },
       {
