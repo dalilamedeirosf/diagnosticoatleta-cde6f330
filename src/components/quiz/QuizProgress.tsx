@@ -35,7 +35,7 @@ const QuizProgress = ({
                 ? blockColors[block.color]
                 : index === currentBlockIndex 
                   ? blockColors[block.color] + " opacity-80"
-                  : "bg-muted"
+                  : "bg-white/20"
             }`}
           />
         ))}
@@ -45,19 +45,19 @@ const QuizProgress = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-xl">{currentBlock.emoji}</span>
-          <span className="font-medium text-sm text-foreground">
+          <span className="font-medium text-sm text-white drop-shadow-lg">
             {currentBlock.title}
           </span>
         </div>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-sm text-white/70">
           {currentQuestionInBlock + 1} de {totalQuestionsInBlock}
         </span>
       </div>
 
       {/* Question progress within block */}
-      <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
+      <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
         <div 
-          className={`h-full rounded-full transition-all duration-500 ${blockColors[currentBlock.color]}`}
+          className={`h-full rounded-full transition-all duration-500 ${blockColors[currentBlock.color]} shadow-[0_0_10px_currentColor]`}
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
