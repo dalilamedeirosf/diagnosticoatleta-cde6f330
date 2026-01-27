@@ -110,8 +110,8 @@ const QuizContainer = () => {
       </header>
 
       {/* Question Content - Centered, no scroll */}
-      <main className="flex-1 flex items-center justify-center px-4 py-3 relative z-10 min-h-0">
-        <div className="max-w-md w-full bg-card/95 backdrop-blur-sm rounded-2xl p-4 shadow-2xl border border-border max-h-full overflow-y-auto">
+      <main className="flex-1 flex items-center justify-center px-3 py-2 relative z-10 min-h-0">
+        <div className="max-w-lg w-full bg-card/95 backdrop-blur-sm rounded-2xl p-5 shadow-2xl border border-border max-h-full overflow-y-auto">
           <QuizQuestion 
             key={currentQuestion.id}
             question={currentQuestion}
