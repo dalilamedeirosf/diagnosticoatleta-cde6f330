@@ -22,42 +22,64 @@ import placeAcademy from "@/assets/place-academy.jpg";
 
 // Q6 - Risk taking
 import q6Safe from "@/assets/q6-safe.jpg";
+import q6Sometimes from "@/assets/q6-sometimes.jpg";
+import q6Frequent from "@/assets/q6-frequent.jpg";
 import q6Leader from "@/assets/q6-leader.jpg";
 
 // Q8 - Training vs Match
 import q8Training from "@/assets/q8-training.jpg";
+import q8BitTraining from "@/assets/q8-bit-training.jpg";
+import q8Equal from "@/assets/q8-equal.jpg";
 import q8Match from "@/assets/q8-match.jpg";
 
 // Q10 - Weakness
 import q10Physical from "@/assets/q10-physical.jpg";
 import q10Confidence from "@/assets/q10-confidence.jpg";
+import q10Decision from "@/assets/q10-decision.jpg";
+import q10Concentration from "@/assets/q10-concentration.jpg";
+import q10Unknown from "@/assets/q10-unknown.jpg";
 
 // Q12 - Big games
 import q12Freeze from "@/assets/q12-freeze.jpg";
+import q12Oscillate from "@/assets/q12-oscillate.jpg";
+import q12Maintain from "@/assets/q12-maintain.jpg";
 import q12Rise from "@/assets/q12-rise.jpg";
 
 // Q14 - Self belief
 import q14Doubt from "@/assets/q14-doubt.jpg";
+import q14Sometimes from "@/assets/q14-sometimes.jpg";
+import q14Growing from "@/assets/q14-growing.jpg";
 import q14Believe from "@/assets/q14-believe.jpg";
 
 // Q16 - Family attitude
 import q16Hobby from "@/assets/q16-hobby.jpg";
+import q16Important from "@/assets/q16-important.jpg";
+import q16Project from "@/assets/q16-project.jpg";
 import q16Priority from "@/assets/q16-priority.jpg";
 
 // Q18 - Family reaction good games
 import q18Demand from "@/assets/q18-demand.jpg";
+import q18Obligation from "@/assets/q18-obligation.jpg";
+import q18Recognize from "@/assets/q18-recognize.jpg";
 import q18Celebrate from "@/assets/q18-celebrate.jpg";
 
 // Q20 - Screen time
 import q20ScreensHigh from "@/assets/q20-screens-high.jpg";
+import q20ScreensMedium from "@/assets/q20-screens-medium.jpg";
+import q20ScreensBalanced from "@/assets/q20-screens-balanced.jpg";
 import q20ScreensLow from "@/assets/q20-screens-low.jpg";
 
 // Q22 - Dream
 import q22Fun from "@/assets/q22-fun.jpg";
+import q22Current from "@/assets/q22-current.jpg";
+import q22BigClub from "@/assets/q22-bigclub.jpg";
 import q22Pro from "@/assets/q22-pro.jpg";
 
 // Q24 - Blocker
 import q24Direction from "@/assets/q24-direction.jpg";
+import q24Confidence from "@/assets/q24-confidence.jpg";
+import q24Physical from "@/assets/q24-physical.jpg";
+import q24Environment from "@/assets/q24-environment.jpg";
 import q24All from "@/assets/q24-all.jpg";
 
 const optionImages: Record<string, string> = {
@@ -75,24 +97,46 @@ const optionImages: Record<string, string> = {
   "place-structured": placeStructured,
   "place-academy": placeAcademy,
   "q6-safe": q6Safe,
+  "q6-sometimes": q6Sometimes,
+  "q6-frequent": q6Frequent,
   "q6-leader": q6Leader,
   "q8-training": q8Training,
+  "q8-bit-training": q8BitTraining,
+  "q8-equal": q8Equal,
   "q8-match": q8Match,
   "q10-physical": q10Physical,
   "q10-confidence": q10Confidence,
+  "q10-decision": q10Decision,
+  "q10-concentration": q10Concentration,
+  "q10-unknown": q10Unknown,
   "q12-freeze": q12Freeze,
+  "q12-oscillate": q12Oscillate,
+  "q12-maintain": q12Maintain,
   "q12-rise": q12Rise,
   "q14-doubt": q14Doubt,
+  "q14-sometimes": q14Sometimes,
+  "q14-growing": q14Growing,
   "q14-believe": q14Believe,
   "q16-hobby": q16Hobby,
+  "q16-important": q16Important,
+  "q16-project": q16Project,
   "q16-priority": q16Priority,
   "q18-demand": q18Demand,
+  "q18-obligation": q18Obligation,
+  "q18-recognize": q18Recognize,
   "q18-celebrate": q18Celebrate,
   "q20-screens-high": q20ScreensHigh,
+  "q20-screens-medium": q20ScreensMedium,
+  "q20-screens-balanced": q20ScreensBalanced,
   "q20-screens-low": q20ScreensLow,
   "q22-fun": q22Fun,
+  "q22-current": q22Current,
+  "q22-bigclub": q22BigClub,
   "q22-pro": q22Pro,
   "q24-direction": q24Direction,
+  "q24-confidence": q24Confidence,
+  "q24-physical": q24Physical,
+  "q24-environment": q24Environment,
   "q24-all": q24All,
 };
 
