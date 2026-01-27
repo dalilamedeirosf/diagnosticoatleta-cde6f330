@@ -156,13 +156,14 @@ const QuizContainer = () => {
       <footer className="flex-shrink-0 bg-gradient-to-t from-white/5 to-transparent backdrop-blur-sm border-t border-cyan-400/10 px-4 py-2 z-10 safe-area-bottom">
         <div className="max-w-md mx-auto flex gap-3">
           <div className="relative flex-1">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-slate-400/30 to-slate-500/30 rounded-xl blur opacity-40" />
             <Button
               variant="ghost"
               onClick={handleBack}
               disabled={isFirstQuestion}
-              className="w-full h-12 text-base font-semibold rounded-xl bg-white/5 border border-white/15 text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm disabled:opacity-30 [-webkit-appearance:none]"
+              className="relative w-full h-12 text-base font-semibold rounded-xl bg-slate-700/80 border border-slate-500/50 text-white hover:bg-slate-600/80 backdrop-blur-sm disabled:opacity-30 [-webkit-appearance:none] [color:white_!important]"
             >
-              <ChevronLeft className="w-5 h-5 mr-1" />
+              <ChevronLeft className="w-5 h-5 mr-1 text-white" />
               Voltar
             </Button>
           </div>
