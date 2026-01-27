@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 import logo from "@/assets/logo-joga-junto.png";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Trophy, Target, TrendingUp, AlertCircle, Award, Star, Zap } from "lucide-react";
@@ -9,6 +11,44 @@ interface QuizResultProps {
 }
 
 const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
+  // Fire confetti on mount
+  useEffect(() => {
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#10b981', '#f59e0b'];
+
+    const frame = () => {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.7 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.7 },
+        colors: colors,
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    // Initial burst
+    confetti({
+      particleCount: 100,
+      spread: 100,
+      origin: { x: 0.5, y: 0.4 },
+      colors: colors,
+    });
+
+    frame();
+  }, []);
   // Calculate scores per block
   const blockScores = quizBlocks.map((block) => {
     const blockQuestions = block.questions;
