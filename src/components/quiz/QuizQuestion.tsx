@@ -1,6 +1,21 @@
 import { QuizQuestion as QuizQuestionType, QuizBlock } from "@/data/quizQuestions";
 import { cn } from "@/lib/utils";
 
+// Age images
+import age10 from "@/assets/age-10.jpg";
+import age12 from "@/assets/age-12.jpg";
+import age14 from "@/assets/age-14.jpg";
+import age16 from "@/assets/age-16.jpg";
+import age17 from "@/assets/age-17.jpg";
+
+const ageImages: Record<string, string> = {
+  "age-10": age10,
+  "age-12": age12,
+  "age-14": age14,
+  "age-16": age16,
+  "age-17": age17,
+};
+
 interface QuizQuestionProps {
   question: QuizQuestionType;
   blockColor: QuizBlock['color'];
@@ -50,6 +65,7 @@ const QuizQuestion = ({
   questionNumber 
 }: QuizQuestionProps) => {
   const styles = colorStyles[blockColor];
+  const hasImages = question.options.some(opt => opt.image && ageImages[opt.image]);
 
   return (
     <div className="w-full space-y-6 animate-slide-in">
@@ -64,50 +80,84 @@ const QuizQuestion = ({
       </div>
 
       {/* Options */}
-      <div className="space-y-3">
-        {question.options.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => onSelectOption(option.value)}
-            className={cn(
-              "w-full p-4 md:p-5 text-left rounded-xl border-2 transition-all duration-200",
-              "hover:scale-[1.02] active:scale-[0.98]",
-              selectedOption === option.value
-                ? `${styles.bg} ${styles.border} ring-2 ${styles.ring}`
-                : "bg-card border-border hover:border-primary/50 hover:bg-secondary/50"
-            )}
-          >
-            <div className="flex items-center gap-3">
-              <div className={cn(
-                "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
-                selectedOption === option.value 
-                  ? styles.border
-                  : "border-muted-foreground/30"
-              )}>
-                {selectedOption === option.value && (
-                  <div className={cn(
-                    "w-2.5 h-2.5 rounded-full",
-                    blockColor === 'green' && "bg-quiz-green",
-                    blockColor === 'yellow' && "bg-quiz-yellow",
-                    blockColor === 'blue' && "bg-quiz-blue",
-                    blockColor === 'purple' && "bg-quiz-purple",
-                    blockColor === 'orange' && "bg-quiz-orange",
-                    blockColor === 'red' && "bg-quiz-red",
-                  )} />
-                )}
-              </div>
+      {hasImages ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {question.options.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => onSelectOption(option.value)}
+              className={cn(
+                "flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200",
+                "hover:scale-[1.02] active:scale-[0.98]",
+                selectedOption === option.value
+                  ? `${styles.bg} ${styles.border} ring-2 ${styles.ring}`
+                  : "bg-card border-border hover:border-primary/50 hover:bg-secondary/50"
+              )}
+            >
+              {option.image && ageImages[option.image] && (
+                <img 
+                  src={ageImages[option.image]} 
+                  alt={option.label}
+                  className="w-20 h-20 rounded-full object-cover mb-2 border-2 border-background shadow-md"
+                />
+              )}
               <span className={cn(
-                "text-base font-medium",
+                "text-sm font-medium text-center",
                 selectedOption === option.value 
                   ? "text-foreground" 
                   : "text-foreground/80"
               )}>
                 {option.label}
               </span>
-            </div>
-          </button>
-        ))}
-      </div>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {question.options.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => onSelectOption(option.value)}
+              className={cn(
+                "w-full p-4 md:p-5 text-left rounded-xl border-2 transition-all duration-200",
+                "hover:scale-[1.02] active:scale-[0.98]",
+                selectedOption === option.value
+                  ? `${styles.bg} ${styles.border} ring-2 ${styles.ring}`
+                  : "bg-card border-border hover:border-primary/50 hover:bg-secondary/50"
+              )}
+            >
+              <div className="flex items-center gap-3">
+                <div className={cn(
+                  "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0",
+                  selectedOption === option.value 
+                    ? styles.border
+                    : "border-muted-foreground/30"
+                )}>
+                  {selectedOption === option.value && (
+                    <div className={cn(
+                      "w-2.5 h-2.5 rounded-full",
+                      blockColor === 'green' && "bg-quiz-green",
+                      blockColor === 'yellow' && "bg-quiz-yellow",
+                      blockColor === 'blue' && "bg-quiz-blue",
+                      blockColor === 'purple' && "bg-quiz-purple",
+                      blockColor === 'orange' && "bg-quiz-orange",
+                      blockColor === 'red' && "bg-quiz-red",
+                    )} />
+                  )}
+                </div>
+                <span className={cn(
+                  "text-base font-medium",
+                  selectedOption === option.value 
+                    ? "text-foreground" 
+                    : "text-foreground/80"
+                )}>
+                  {option.label}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

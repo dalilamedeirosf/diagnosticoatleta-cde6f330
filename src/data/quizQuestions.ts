@@ -1,6 +1,7 @@
 export interface QuizOption {
   label: string;
   value: number;
+  image?: string;
 }
 
 export interface QuizQuestion {
@@ -28,11 +29,11 @@ export const quizBlocks: QuizBlock[] = [
         id: 1,
         question: "Idade do atleta",
         options: [
-          { label: "Até 10 anos", value: 1 },
-          { label: "11–12 anos", value: 2 },
-          { label: "13–14 anos", value: 3 },
-          { label: "15–16 anos", value: 4 },
-          { label: "17+", value: 5 },
+          { label: "Até 10 anos", value: 1, image: "age-10" },
+          { label: "11–12 anos", value: 2, image: "age-12" },
+          { label: "13–14 anos", value: 3, image: "age-14" },
+          { label: "15–16 anos", value: 4, image: "age-16" },
+          { label: "17+", value: 5, image: "age-17" },
         ],
       },
       {
