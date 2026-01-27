@@ -118,164 +118,158 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
           transformOrigin: 'center top'
         }} />
         
-        {/* Scanlines effect */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)'
-        }} />
-        
-        {/* Center glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-cyan-500/10 via-transparent to-transparent rounded-full" />
-        
         {/* Logo watermark */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src={logo} alt="" className="w-[60vw] max-w-xs opacity-[0.02] object-contain" />
         </div>
       </div>
 
-      {/* Full Screen Content */}
-      <div className="flex-1 flex flex-col relative z-10 px-4 py-6 safe-area-top safe-area-bottom">
-        <div className="max-w-lg mx-auto w-full flex-1 flex flex-col justify-between animate-fade-in">
-          
-          {/* Header - Premium Glass */}
-          <div className="relative group">
-            {/* Glow behind card */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-violet-500/50 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden relative z-10 [-webkit-overflow-scrolling:touch]">
+        <div className="min-h-full px-4 py-4 safe-area-top safe-area-bottom">
+          <div className="max-w-lg mx-auto w-full flex flex-col gap-3 animate-fade-in pb-2">
             
-            <div className="relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-2xl p-5 border border-white/20 shadow-[0_0_50px_rgba(6,182,212,0.15)]">
-              <div className="flex items-center gap-4">
-                <img src={logo} alt="Joga Junto" className="h-14 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
-                
-                {/* Score Circle - Neon effect */}
-                <div className="relative w-20 h-20 flex-shrink-0">
-                  {/* Outer glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-40 animate-pulse" />
-                  <svg className="w-full h-full transform -rotate-90 relative z-10">
-                    <defs>
-                      <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#06b6d4" />
-                        <stop offset="50%" stopColor="#3b82f6" />
-                        <stop offset="100%" stopColor="#8b5cf6" />
-                      </linearGradient>
-                      <filter id="glow">
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.1)" strokeWidth="6" fill="none" />
-                    <circle cx="40" cy="40" r="34" stroke="url(#neonGradient)" strokeWidth="6" fill="none"
-                      strokeDasharray={`${overallPercentage * 2.136} 213.6`} strokeLinecap="round" filter="url(#glow)" />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl font-black text-white drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">{overallPercentage}%</span>
-                  </div>
-                </div>
-                
-                {/* Profile */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-cyan-300/70 uppercase tracking-[0.2em] font-medium">Diagnóstico</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <ProfileIcon className={`w-5 h-5 ${profile.color} drop-shadow-[0_0_8px_currentColor]`} />
-                    <span className={`font-bold text-lg ${profile.color} drop-shadow-[0_0_10px_currentColor]`}>{profile.level}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Block Scores Grid - Holographic */}
-          <div className="relative my-4 flex-1 flex flex-col">
-            <div className="absolute -inset-1 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-3xl blur-xl opacity-30" />
-            
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] flex-1 flex flex-col">
-              <div className="flex items-center gap-2 mb-3">
-                <Award className="w-5 h-5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                <h3 className="font-bold text-sm text-white tracking-wide">Pontuação por Área</h3>
-              </div>
+            {/* Header - Premium Glass */}
+            <div className="relative group">
+              {/* Glow behind card */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-violet-500/50 rounded-3xl blur-xl opacity-50" />
               
-              <div className="grid grid-cols-2 gap-3 flex-1">
-                {blockScores.map(({ block, percentage }) => (
-                  <div key={block.id} className="relative group">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${blockColorMap[block.color].gradient} rounded-xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity`} />
-                    <div className="relative bg-gradient-to-br from-white/10 to-white/5 hover:from-white/15 hover:to-white/10 rounded-xl p-3 flex flex-col border border-white/15 transition-all hover:scale-[1.02] hover:border-white/25 shadow-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl">{block.emoji}</span>
-                        <span className="text-xs font-semibold text-white/90 leading-tight flex-1">{block.title.split('(')[0].trim()}</span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-auto">
-                        <div className="flex-1 bg-black/30 rounded-full h-2 overflow-hidden">
-                          <div 
-                            className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient} shadow-[0_0_10px_currentColor]`}
-                            style={{ width: `${percentage}%` }}
-                          />
-                        </div>
-                        <span className={`text-sm font-black bg-gradient-to-r ${blockColorMap[block.color].gradient} bg-clip-text text-transparent drop-shadow-lg`}>{percentage}%</span>
-                      </div>
+              <div className="relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/20 shadow-[0_0_50px_rgba(6,182,212,0.15)]">
+                <div className="flex items-center gap-3">
+                  <img src={logo} alt="Joga Junto" className="h-10 sm:h-12 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
+                  
+                  {/* Score Circle - Neon effect */}
+                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 flex-shrink-0">
+                    {/* Outer glow */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-40 animate-pulse" />
+                    <svg className="w-full h-full transform -rotate-90 relative z-10" viewBox="0 0 80 80">
+                      <defs>
+                        <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#06b6d4" />
+                          <stop offset="50%" stopColor="#3b82f6" />
+                          <stop offset="100%" stopColor="#8b5cf6" />
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.1)" strokeWidth="6" fill="none" />
+                      <circle cx="40" cy="40" r="34" stroke="url(#neonGradient)" strokeWidth="6" fill="none"
+                        strokeDasharray={`${overallPercentage * 2.136} 213.6`} strokeLinecap="round" filter="url(#glow)" />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-xl sm:text-2xl font-black text-white drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]">{overallPercentage}%</span>
                     </div>
                   </div>
-                ))}
+                  
+                  {/* Profile */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] sm:text-xs text-cyan-300/70 uppercase tracking-[0.15em] font-medium">Diagnóstico</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <ProfileIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${profile.color} drop-shadow-[0_0_8px_currentColor]`} />
+                      <span className={`font-bold text-sm sm:text-base ${profile.color} drop-shadow-[0_0_10px_currentColor] truncate`}>{profile.level}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Insights - Neon Cards */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
-              <div className="relative bg-emerald-950/80 backdrop-blur-xl rounded-xl p-4 border border-emerald-400/40">
+            {/* Block Scores Grid - Holographic */}
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-3xl blur-xl opacity-30" />
+              
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-3 border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
                 <div className="flex items-center gap-2 mb-2">
-                  <Zap className="w-4 h-4 text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                  <span className="font-bold text-emerald-400 text-xs tracking-wide">Ponto Forte</span>
+                  <Award className="w-4 h-4 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                  <h3 className="font-bold text-xs sm:text-sm text-white tracking-wide">Pontuação por Área</h3>
                 </div>
-                <p className="text-xs text-emerald-100/70 mb-1">{strongestArea.block.title.split('(')[0].trim()}</p>
-                <p className="text-2xl font-black text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]">{strongestArea.percentage}%</p>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  {blockScores.map(({ block, percentage }) => (
+                    <div key={block.id} className="relative group">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${blockColorMap[block.color].gradient} rounded-xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity`} />
+                      <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-2.5 flex flex-col border border-white/15 transition-all active:scale-[0.98] shadow-lg">
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <span className="text-base sm:text-lg">{block.emoji}</span>
+                          <span className="text-[10px] sm:text-xs font-semibold text-white/90 leading-tight flex-1 truncate">{block.title.split('(')[0].trim()}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 bg-black/30 rounded-full h-1.5 overflow-hidden">
+                            <div 
+                              className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient} shadow-[0_0_10px_currentColor]`}
+                              style={{ width: `${percentage}%` }}
+                            />
+                          </div>
+                          <span className={`text-xs sm:text-sm font-black bg-gradient-to-r ${blockColorMap[block.color].gradient} bg-clip-text text-transparent`}>{percentage}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+
+            {/* Insights - Neon Cards */}
+            <div className="grid grid-cols-2 gap-2">
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl blur opacity-30" />
+                <div className="relative bg-emerald-950/80 backdrop-blur-xl rounded-xl p-3 border border-emerald-400/40">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Zap className="w-3.5 h-3.5 text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    <span className="font-bold text-emerald-400 text-[10px] sm:text-xs tracking-wide">Ponto Forte</span>
+                  </div>
+                  <p className="text-[10px] sm:text-xs text-emerald-100/70 mb-0.5 truncate">{strongestArea.block.title.split('(')[0].trim()}</p>
+                  <p className="text-xl sm:text-2xl font-black text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]">{strongestArea.percentage}%</p>
+                </div>
+              </div>
+              
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl blur opacity-30" />
+                <div className="relative bg-orange-950/80 backdrop-blur-xl rounded-xl p-3 border border-orange-400/40">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Target className="w-3.5 h-3.5 text-orange-400 drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
+                    <span className="font-bold text-orange-400 text-[10px] sm:text-xs tracking-wide">Área de Foco</span>
+                  </div>
+                  <p className="text-[10px] sm:text-xs text-orange-100/70 mb-0.5 truncate">{weakestArea.block.title.split('(')[0].trim()}</p>
+                  <p className="text-xl sm:text-2xl font-black text-orange-400 drop-shadow-[0_0_15px_rgba(251,146,60,0.6)]">{weakestArea.percentage}%</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Recommendation - Holographic */}
+            <div className="relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 via-yellow-500/50 to-amber-500/50 rounded-xl blur opacity-20" />
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-xl p-3 border border-amber-400/20">
+                <div className="flex items-start gap-2">
+                  <Star className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]" />
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+                    Focar em <strong className="text-amber-300">{weakestArea.block.title.split('(')[0].trim()}</strong> pode acelerar o desenvolvimento.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Restart Button - Premium Neon */}
+            <div className="relative group mt-1">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
+              <Button 
+                onClick={onRestart}
+                size="lg"
+                className="relative w-full h-12 sm:h-14 text-sm sm:text-base font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 text-white hover:opacity-90 rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all active:scale-[0.98] border-0 [-webkit-appearance:none]"
+              >
+                <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Refazer Diagnóstico
+              </Button>
             </div>
             
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
-              <div className="relative bg-orange-950/80 backdrop-blur-xl rounded-xl p-4 border border-orange-400/40">
-                <div className="flex items-center gap-2 mb-2">
-                  <Target className="w-4 h-4 text-orange-400 drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
-                  <span className="font-bold text-orange-400 text-xs tracking-wide">Área de Foco</span>
-                </div>
-                <p className="text-xs text-orange-100/70 mb-1">{weakestArea.block.title.split('(')[0].trim()}</p>
-                <p className="text-2xl font-black text-orange-400 drop-shadow-[0_0_15px_rgba(251,146,60,0.6)]">{weakestArea.percentage}%</p>
-              </div>
-            </div>
+            <p className="text-center text-[10px] sm:text-xs text-cyan-400/40 tracking-wider pb-2">
+              Powered by Joga Junto
+            </p>
           </div>
-
-          {/* Recommendation - Holographic */}
-          <div className="relative mb-4">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/50 via-yellow-500/50 to-amber-500/50 rounded-xl blur opacity-20" />
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-amber-400/20">
-              <div className="flex items-start gap-3">
-                <Star className="w-5 h-5 text-amber-400 flex-shrink-0 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]" />
-                <p className="text-sm text-white/80 leading-relaxed">
-                  Focar em <strong className="text-amber-300">{weakestArea.block.title}</strong> pode acelerar o desenvolvimento.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Restart Button - Premium Neon */}
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
-            <Button 
-              onClick={onRestart}
-              size="lg"
-              className="relative w-full h-14 text-base font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 text-white hover:opacity-90 rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all active:scale-[0.98] border-0"
-            >
-              <RefreshCw className="w-5 h-5 mr-2" />
-              Refazer Diagnóstico
-            </Button>
-          </div>
-          
-          <p className="text-center text-xs text-cyan-400/40 mt-3 tracking-wider">
-            Powered by Joga Junto
-          </p>
         </div>
       </div>
     </div>
