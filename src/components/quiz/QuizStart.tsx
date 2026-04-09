@@ -87,7 +87,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         {/* Premium Feature Cards - Holographic */}
         <div className="flex justify-center gap-3 py-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {[
-            { icon: Target, value: "25", label: "Perguntas" },
+            { icon: Target, value: "Descubra", label: "o nível real do atleta" },
             { icon: Users, value: "6", label: "Áreas" },
             { icon: TrendingUp, value: "PDF", label: "Resultado" }
           ].map((item, index) => (

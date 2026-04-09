@@ -6,9 +6,10 @@ import QuizStart from "./QuizStart";
 import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizResult from "./QuizResult";
+import QuizForm from "./QuizForm";
 import logo from "@/assets/craque-em-contrução1.png";
 
-type QuizState = "start" | "questions" | "result";
+type QuizState = "start" | "form" | "questions" | "result";
 
 const QuizContainer = () => {
   const [quizState, setQuizState] = useState<QuizState>("start");
@@ -21,6 +22,11 @@ const QuizContainer = () => {
   const currentQuestion = currentBlock?.questions[currentQuestionIndex];
 
   const handleStart = () => {
+    setQuizState("form");
+  };
+
+  const handleFormComplete = (leadData: any) => {
+    console.log("Athlete Data Collected:", leadData);
     setQuizState("questions");
   };
 
@@ -128,16 +134,20 @@ const QuizContainer = () => {
         </div>
       </div>
 
-      {/* Header - Glass effect */}
-      <header className="flex-shrink-0 z-10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border-b border-gold/10 px-4 py-2 safe-area-top">
-        <div className="max-w-md mx-auto">
-          <QuizProgress 
-            currentBlockIndex={currentBlockIndex}
-            currentQuestionInBlock={currentQuestionIndex}
-            totalQuestionsInBlock={currentBlock.questions.length}
-          />
-        </div>
-      </header>
+      {quizState === "form" ? (
+        <QuizForm onComplete={handleFormComplete} />
+      ) : (
+        <>
+          {/* Header - Glass effect */}
+          <header className="flex-shrink-0 z-10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border-b border-gold/10 px-4 py-2 safe-area-top">
+            <div className="max-w-md mx-auto">
+              <QuizProgress 
+                currentBlockIndex={currentBlockIndex}
+                currentQuestionInBlock={currentQuestionIndex}
+                totalQuestionsInBlock={currentBlock.questions.length}
+              />
+            </div>
+          </header>
 
       {/* Question Content - Premium Glass Card */}
       <main className="flex-1 flex items-center justify-center px-3 py-2 relative z-10 min-h-0">
@@ -188,7 +198,9 @@ const QuizContainer = () => {
             </Button>
           </div>
         </div>
-      </footer>
+          </footer>
+        </>
+      )}
     </div>
   );
 };
