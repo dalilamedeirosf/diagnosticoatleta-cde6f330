@@ -7,6 +7,7 @@ export interface QuizOption {
 export interface QuizQuestion {
   id: number;
   question: string;
+  isMultiSelect?: boolean;
   options: QuizOption[];
 }
 
@@ -27,43 +28,45 @@ export const quizBlocks: QuizBlock[] = [
     questions: [
 
       {
-        id: 2,
-        question: "Há quanto tempo ele joga futebol de forma organizada?",
-        options: [
-          { label: "Menos de 1 ano", value: 1 },
-          { label: "1–2 anos", value: 2 },
-          { label: "3–4 anos", value: 3 },
-          { label: "5 anos ou mais", value: 4 },
-        ],
-      },
-      {
         id: 3,
-        question: "Atualmente ele treina:",
+        question: "Onde o atleta está inserido atualmente?",
         options: [
-          { label: "1–2x por semana", value: 1, image: "train-1-2x" },
-          { label: "3x por semana", value: 2, image: "train-3x" },
-          { label: "4–5x por semana", value: 3, image: "train-4-5x" },
-          { label: "Todos os dias", value: 4, image: "train-daily" },
+          { label: "Escolinha de futebol", value: 1 },
+          { label: "Projeto social", value: 2 },
+          { label: "Base não federada", value: 3 },
+          { label: "Clube que disputa federação", value: 4 },
+          { label: "Nível profissional", value: 5 },
         ],
       },
       {
         id: 4,
-        question: "Onde ele joga hoje?",
+        question: "Há quanto tempo o atleta treina futebol de forma estruturada?",
         options: [
-          { label: "Escola / projeto social", value: 1, image: "place-school" },
-          { label: "Clube pequeno / local", value: 2, image: "place-local" },
-          { label: "Clube estruturado", value: 3, image: "place-structured" },
-          { label: "Clube de base tradicional", value: 4, image: "place-academy" },
+          { label: "Menos de 1 ano", value: 1 },
+          { label: "1 a 2 anos", value: 2 },
+          { label: "3 a 4 anos", value: 3 },
+          { label: "5 anos ou mais", value: 4 },
         ],
       },
       {
         id: 5,
-        question: "Já participou de competições oficiais?",
+        question: "Qual é a frequência semanal de treinos do atleta?",
         options: [
-          { label: "Nunca", value: 1 },
-          { label: "Poucas vezes", value: 2 },
-          { label: "Frequente (campeonatos regulares)", value: 3 },
-          { label: "Competições de alto nível", value: 4 },
+          { label: "1 a 2 vezes por semana", value: 1 },
+          { label: "3 vezes por semana", value: 2 },
+          { label: "4 a 5 vezes por semana", value: 3 },
+          { label: "Todos os dias", value: 4 },
+        ],
+      },
+      {
+        id: 6,
+        question: "Qual o nível de competições que o atleta já participou?",
+        options: [
+          { label: "Nunca participou", value: 1 },
+          { label: "Competições de escolinha", value: 2 },
+          { label: "Competições de base", value: 3 },
+          { label: "Competições federadas", value: 4 },
+          { label: "Competições em nível profissional", value: 5 },
         ],
       },
     ],
@@ -75,54 +78,49 @@ export const quizBlocks: QuizBlock[] = [
     emoji: "🟡",
     questions: [
       {
-        id: 6,
-        question: "Em jogos, o atleta costuma:",
-        options: [
-          { label: "Jogar seguro, quase não arrisca", value: 1, image: "q6-safe" },
-          { label: "Arriscar às vezes", value: 2, image: "q6-sometimes" },
-          { label: "Arriscar com frequência", value: 3, image: "q6-frequent" },
-          { label: "Chamar a responsabilidade", value: 4, image: "q6-leader" },
-        ],
-      },
-      {
         id: 7,
-        question: "Quando erra uma jogada, ele geralmente:",
+        question: "Durante o jogo, como o atleta se comporta na maioria das vezes?",
         options: [
-          { label: "Se desanima e some do jogo", value: 1 },
-          { label: "Fica inseguro por alguns minutos", value: 2 },
-          { label: "Segue jogando normal", value: 3 },
-          { label: "Usa o erro como motivação", value: 4 },
+          { label: "Joga com segurança e evita riscos", value: 1 },
+          { label: "Arrisca em alguns momentos", value: 2 },
+          { label: "Busca participar bastante do jogo", value: 3 },
+          { label: "Assume protagonismo", value: 4 },
+          { label: "Chama a responsabilidade em momentos importantes", value: 5 },
         ],
       },
       {
         id: 8,
-        question: "Comparando treino e jogo, ele rende melhor:",
+        question: "Como o atleta reage após cometer um erro em campo?",
         options: [
-          { label: "Muito melhor no treino", value: 1, image: "q8-training" },
-          { label: "Um pouco melhor no treino", value: 2, image: "q8-bit-training" },
-          { label: "Igual", value: 3, image: "q8-equal" },
-          { label: "Melhor no jogo", value: 4, image: "q8-match" },
+          { label: "Se abala e se retrai", value: 1 },
+          { label: "Fica inseguro por um tempo", value: 2 },
+          { label: "Segue jogando normalmente", value: 3 },
+          { label: "Usa o erro como motivação", value: 4 },
         ],
       },
       {
         id: 9,
-        question: "Em termos físicos, durante a partida ele:",
+        question: "Onde o atleta apresenta melhor desempenho?",
         options: [
-          { label: "Cansa rápido", value: 1 },
-          { label: "Cai muito no segundo tempo", value: 2 },
-          { label: "Mantém o ritmo razoável", value: 3 },
-          { label: "Sustenta intensidade até o fim", value: 4 },
+          { label: "Muito melhor no treino", value: 1 },
+          { label: "Um pouco melhor no treino", value: 2 },
+          { label: "Igual nos dois", value: 3 },
+          { label: "Melhor no jogo", value: 4 },
         ],
       },
       {
         id: 10,
-        question: "Hoje, o maior ponto fraco dentro de campo é:",
+        question: "Quais fatores mais estão limitando o desempenho do atleta hoje?",
+        isMultiSelect: true,
         options: [
-          { label: "Condicionamento físico", value: 1, image: "q10-physical" },
-          { label: "Confiança / coragem", value: 2, image: "q10-confidence" },
-          { label: "Tomada de decisão", value: 3, image: "q10-decision" },
-          { label: "Concentração", value: 4, image: "q10-concentration" },
-          { label: "Não sei dizer", value: 0, image: "q10-unknown" },
+          { label: "Condicionamento físico", value: 1 },
+          { label: "Falta de confiança", value: 2 },
+          { label: "Medo de errar", value: 3 },
+          { label: "Dificuldade na tomada de decisão", value: 4 },
+          { label: "Falta de concentração", value: 5 },
+          { label: "Oscilação emocional", value: 6 },
+          { label: "Falta de orientação/treinamento adequado", value: 7 },
+          { label: "Não está claro ainda", value: 0 },
         ],
       },
     ],
@@ -135,42 +133,27 @@ export const quizBlocks: QuizBlock[] = [
     questions: [
       {
         id: 11,
-        question: "O atleta gosta de competir?",
+        question: "Como o atleta se comporta em ambientes competitivos?",
+        isMultiSelect: true,
         options: [
-          { label: "Evita jogos decisivos", value: 1 },
-          { label: "Compete, mas sente muita pressão", value: 2 },
-          { label: "Gosta, mas oscila", value: 3 },
-          { label: "Se sente vivo competindo", value: 4 },
+          { label: "Evita jogos difíceis", value: 1 },
+          { label: "Sente muita pressão", value: 2 },
+          { label: "Oscila bastante", value: 3 },
+          { label: "Compete normalmente", value: 4 },
+          { label: "Gosta de competir", value: 5 },
+          { label: "Cresce em jogos importantes", value: 6 },
+          { label: "Se destaca sob pressão", value: 7 },
         ],
       },
       {
         id: 12,
-        question: "Em jogos importantes, ele costuma:",
+        question: "O atleta gosta de competir?",
         options: [
-          { label: "Travar", value: 1, image: "q12-freeze" },
-          { label: "Oscilar bastante", value: 2, image: "q12-oscillate" },
-          { label: "Manter o nível", value: 3, image: "q12-maintain" },
-          { label: "Crescer", value: 4, image: "q12-rise" },
-        ],
-      },
-      {
-        id: 13,
-        question: "Como ele reage a críticas do treinador?",
-        options: [
-          { label: "Leva para o lado pessoal", value: 1 },
-          { label: "Fica na defensiva", value: 2 },
-          { label: "Escuta e tenta ajustar", value: 3 },
-          { label: "Usa para evoluir rápido", value: 4 },
-        ],
-      },
-      {
-        id: 14,
-        question: "O atleta acredita no próprio potencial?",
-        options: [
-          { label: "Não", value: 1, image: "q14-doubt" },
-          { label: "Às vezes", value: 2, image: "q14-sometimes" },
-          { label: "Sim, mas ainda com dúvidas", value: 3, image: "q14-growing" },
-          { label: "Sim, claramente", value: 4, image: "q14-believe" },
+          { label: "Evita competir", value: 1 },
+          { label: "Compete, mas sente desconforto", value: 2 },
+          { label: "Gosta, mas oscila", value: 3 },
+          { label: "Gosta de competir", value: 4 },
+          { label: "Se sente motivado e cresce em competição", value: 5 },
         ],
       },
     ],

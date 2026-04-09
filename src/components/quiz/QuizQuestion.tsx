@@ -143,7 +143,7 @@ const optionImages: Record<string, string> = {
 interface QuizQuestionProps {
   question: QuizQuestionType;
   blockColor: QuizBlock['color'];
-  selectedOption: number | null;
+  selectedOption: number | number[] | null;
   onSelectOption: (value: number) => void;
   questionNumber: number;
 }
@@ -201,6 +201,11 @@ const QuizQuestion = ({
         <h2 className="text-xl md:text-2xl font-bold text-white leading-snug drop-shadow-lg">
           {question.question}
         </h2>
+        {question.isMultiSelect && (
+          <p className="text-sm text-gold-100/70 font-medium mt-1">
+            (Pode marcar mais de uma opção)
+          </p>
+        )}
       </div>
 
       {/* Options */}
@@ -208,7 +213,7 @@ const QuizQuestion = ({
         <div className="grid grid-cols-2 gap-3">
           {question.options.map((option, index) => {
             const isLastOdd = question.options.length % 2 === 1 && index === question.options.length - 1;
-            const isSelected = selectedOption === option.value;
+            const isSelected = Array.isArray(selectedOption) ? selectedOption.includes(option.value) : selectedOption === option.value;
             return (
               <button
                 key={index}
@@ -252,7 +257,7 @@ const QuizQuestion = ({
       ) : (
         <div className="space-y-3">
           {question.options.map((option, index) => {
-            const isSelected = selectedOption === option.value;
+            const isSelected = Array.isArray(selectedOption) ? selectedOption.includes(option.value) : selectedOption === option.value;
             return (
               <button
                 key={index}
@@ -272,13 +277,21 @@ const QuizQuestion = ({
                 
                 <div className="relative z-10 flex items-center gap-4">
                   <div className={cn(
-                    "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all",
+                    "flex items-center justify-center flex-shrink-0 transition-all border-2",
+                    question.isMultiSelect ? "w-5 h-5 rounded-md" : "w-5 h-5 rounded-full",
                     isSelected 
                       ? "border-gold bg-gold/20 shadow-[0_0_10px_rgba(212,175,55,0.5)]"
                       : "border-white/30 group-hover:border-gold/50"
                   )}>
                     {isSelected && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+                      <div className={cn(
+                        "bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]",
+                        question.isMultiSelect ? "w-3 h-3 rounded-sm relative" : "w-2.5 h-2.5 rounded-full"
+                      )}>
+                        {question.isMultiSelect && (
+                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-black"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        )}
+                      </div>
                     )}
                   </div>
                   <span className={cn(

@@ -15,7 +15,7 @@ const QuizContainer = () => {
   const [quizState, setQuizState] = useState<QuizState>("start");
   const [currentBlockIndex, setCurrentBlockIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<number, number | number[]>>({});
 
   const totalQuestions = getTotalQuestions();
   const currentBlock = quizBlocks[currentBlockIndex];
@@ -33,10 +33,22 @@ const QuizContainer = () => {
   const handleSelectOption = (value: number) => {
     if (!currentQuestion) return;
     
-    setAnswers((prev) => ({
-      ...prev,
-      [currentQuestion.id]: value,
-    }));
+    if (currentQuestion.isMultiSelect) {
+      setAnswers((prev) => {
+        const currentAns = prev[currentQuestion.id];
+        const arr = Array.isArray(currentAns) ? currentAns : [];
+        if (arr.includes(value)) {
+          return { ...prev, [currentQuestion.id]: arr.filter(v => v !== value) };
+        } else {
+          return { ...prev, [currentQuestion.id]: [...arr, value] };
+        }
+      });
+    } else {
+      setAnswers((prev) => ({
+        ...prev,
+        [currentQuestion.id]: value,
+      }));
+    }
   };
 
   const handleNext = () => {
@@ -78,7 +90,11 @@ const QuizContainer = () => {
   };
 
   const isFirstQuestion = currentBlockIndex === 0 && currentQuestionIndex === 0;
-  const hasSelectedOption = currentQuestion && answers[currentQuestion.id] !== undefined;
+  const hasSelectedOption = currentQuestion && (
+    Array.isArray(answers[currentQuestion.id]) 
+      ? (answers[currentQuestion.id] as number[]).length > 0 
+      : answers[currentQuestion.id] !== undefined
+  );
 
   // Calculate global question number
   const globalQuestionNumber = quizBlocks
