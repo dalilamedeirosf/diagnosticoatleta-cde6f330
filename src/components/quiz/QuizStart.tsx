@@ -71,34 +71,34 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         <div className="space-y-3 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <div className="flex items-center justify-center gap-2">
             <Sparkles className="w-5 h-5 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
-            <span className="text-xs font-semibold tracking-[0.3em] text-gold-300 uppercase">
-              Avaliação Profissional
+            <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] md:tracking-[0.3em] text-gold-300 uppercase">
+              Avaliação baseada em critérios reais do futebol de base
             </span>
             <Sparkles className="w-5 h-5 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-            Diagnóstico do Atleta
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] px-2">
+            Descubra o que está travando a evolução do atleta
           </h1>
-          <p className="text-base md:text-lg text-white/70 max-w-xs mx-auto leading-relaxed">
-            Descubra o nível atual e receba orientações personalizadas para evolução
+          <p className="text-sm md:text-base text-white/70 max-w-md mx-auto leading-relaxed px-4">
+            A maioria dos atletas não evolui por erros que ninguém mostra. Esse diagnóstico revela exatamente onde está o problema.
           </p>
         </div>
 
         {/* Premium Feature Cards - Holographic */}
-        <div className="flex justify-center gap-3 py-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex justify-center gap-2 md:gap-3 py-4 animate-fade-in w-full px-2" style={{ animationDelay: '0.2s' }}>
           {[
-            { icon: Target, value: "Descubra", label: "o nível real do atleta" },
-            { icon: Users, value: "6", label: "Áreas" },
-            { icon: TrendingUp, value: "PDF", label: "Resultado" }
+            { icon: Target, value: "Raio-X completo", label: "Diagnóstico técnico do nível atual" },
+            { icon: Users, value: "6 áreas", label: "Críticas selecionadas" },
+            { icon: TrendingUp, value: "Plano de evolução", label: "Orientações práticas em PDF" }
           ].map((item, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group flex-1">
               <div className="absolute -inset-0.5 bg-gradient-to-br from-gold to-gold-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
-              <div className="relative flex flex-col items-center gap-2 px-5 py-4 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl rounded-2xl border border-gold/20 shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:scale-105 transition-transform duration-200">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold/30 to-gold-600/20 flex items-center justify-center border border-gold/30">
-                  <item.icon className="w-6 h-6 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+              <div className="relative flex flex-col items-center gap-2 px-2 md:px-5 py-4 h-full bg-gradient-to-br from-white/10 to-transparent backdrop-blur-xl rounded-2xl border border-gold/20 shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:scale-[1.03] transition-transform duration-200">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-gold/30 to-gold-600/20 flex items-center justify-center border border-gold/30">
+                  <item.icon className="w-5 h-5 md:w-6 md:h-6 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                 </div>
-                <span className="text-sm font-bold text-white drop-shadow-lg">{item.value}</span>
-                <span className="text-xs text-gold-100/70">{item.label}</span>
+                <span className="text-xs md:text-sm font-bold text-white drop-shadow-lg text-center leading-tight">{item.value}</span>
+                <span className="text-[10px] md:text-xs text-gold-100/70 text-center leading-tight">{item.label}</span>
               </div>
             </div>
           ))}
@@ -106,26 +106,36 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       </div>
 
       {/* Premium CTA Section */}
-      <div className="w-full max-w-md space-y-4 relative z-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
+      <div className="w-full max-w-md space-y-5 flex flex-col items-center relative z-10 animate-fade-in pb-4" style={{ animationDelay: '0.3s' }}>
+        <div className="relative group w-full">
+          <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
           <Button 
             onClick={onStart}
             size="lg"
-            className="relative w-full h-16 text-lg font-bold bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-90 hover:text-black rounded-2xl shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-[0.98] border-0"
+            className="relative w-full h-16 text-lg font-bold bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-95 hover:text-black hover:scale-[1.02] rounded-2xl shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-300 active:scale-[0.98] border-0"
           >
             <Play className="w-6 h-6 mr-3 fill-current" />
-            <span>Iniciar Diagnóstico</span>
+            <span>Fazer Diagnóstico Agora</span>
           </Button>
         </div>
-        <div className="flex items-center justify-center gap-4 text-white/50">
-          <span className="flex items-center gap-1.5 text-sm">
-            <span className="text-base text-gold">⏱️</span> 5-7 min
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shadow-[0_0_6px_rgba(212,175,55,0.8)]" />
-          <span className="flex items-center gap-1.5 text-sm">
-            <span className="text-base text-gold">🎯</span> Preciso
-          </span>
+        
+        {/* Microcopy & Pain Trigger */}
+        <div className="space-y-3 w-full">
+          {" "}
+          <div className="flex flex-wrap items-center justify-center gap-3 text-white/60">
+            <span className="flex items-center gap-1.5 text-xs md:text-sm font-medium">
+              <span className="text-gold opacity-80">⏱️</span> Leva menos de 2 minutos
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-gold/40 shadow-[0_0_6px_rgba(212,175,55,0.5)] hidden md:block" />
+            <span className="flex items-center gap-1.5 text-xs md:text-sm font-medium">
+              <span className="text-gold opacity-80">⚡</span> Resultado imediato
+            </span>
+          </div>
+          <div className="bg-red-900/10 border border-red-500/10 rounded-lg py-2 px-4 shadow-[inset_0_0_15px_rgba(255,0,0,0.03)] backdrop-blur-sm">
+             <p className="text-xs md:text-sm text-center text-red-100/70 font-medium italic">
+                "Mais de 70% dos atletas travam por falta de direção — veja se esse é o caso."
+             </p>
+          </div>
         </div>
       </div>
     </div>
