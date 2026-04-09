@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-craque.png";
+import logo from "@/assets/craque-em-contrução1.png";
 import { Button } from "@/components/ui/button";
 import { Play, Target, Users, TrendingUp, Sparkles } from "lucide-react";
 

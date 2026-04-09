@@ -7,7 +7,7 @@ import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizResult from "./QuizResult";
 import QuizForm from "./QuizForm";
-import logo from "@/assets/logo-craque.png";
+import logo from "@/assets/craque-em-contrução1.png";
 
 type QuizState = "start" | "form" | "questions" | "result";
 

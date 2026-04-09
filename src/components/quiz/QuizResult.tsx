@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
-import logo from "@/assets/logo-craque.png";
+import logo from "@/assets/craque-em-contrução1.png";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Trophy, Target, TrendingUp, AlertCircle, Award, Star, Zap } from "lucide-react";
 import { quizBlocks } from "@/data/quizQuestions";
