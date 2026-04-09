@@ -6,13 +6,12 @@ interface QuizProgressProps {
   totalQuestionsInBlock: number;
 }
 
-const blockColors: Record<QuizBlock['color'], string> = {
-  green: "bg-quiz-green",
-  yellow: "bg-quiz-yellow",
-  blue: "bg-quiz-blue",
-  purple: "bg-quiz-purple",
-  orange: "bg-quiz-orange",
-  red: "bg-quiz-red",
+import { Sparkles } from "lucide-react";
+
+const blockColors = {
+  active: "bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]",
+  completed: "bg-gold-600 opacity-80",
+  inactive: "bg-white/10"
 };
 
 const QuizProgress = ({ 
@@ -26,16 +25,16 @@ const QuizProgress = ({
   return (
     <div className="w-full space-y-4">
       {/* Block indicators */}
-      <div className="flex gap-1.5">
+      <div className="flex gap-2">
         {quizBlocks.map((block, index) => (
           <div
             key={block.id}
-            className={`h-2 flex-1 rounded-full transition-all duration-300 ${
+            className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
               index < currentBlockIndex 
-                ? blockColors[block.color]
+                ? blockColors.completed
                 : index === currentBlockIndex 
-                  ? blockColors[block.color] + " opacity-80"
-                  : "bg-white/20"
+                  ? blockColors.active
+                  : blockColors.inactive
             }`}
           />
         ))}
@@ -44,8 +43,8 @@ const QuizProgress = ({
       {/* Current block info */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xl">{currentBlock.emoji}</span>
-          <span className="font-medium text-sm text-white drop-shadow-lg">
+          <Sparkles className="w-4 h-4 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+          <span className="font-semibold text-sm text-gold-100 drop-shadow-lg tracking-wide uppercase">
             {currentBlock.title}
           </span>
         </div>
@@ -54,10 +53,9 @@ const QuizProgress = ({
         </span>
       </div>
 
-      {/* Question progress within block */}
-      <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+      <div className="w-full bg-white/5 border border-white/5 rounded-full h-1.5 overflow-hidden">
         <div 
-          className={`h-full rounded-full transition-all duration-500 ${blockColors[currentBlock.color]} shadow-[0_0_10px_currentColor]`}
+          className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-gold-600 via-gold to-gold-400 shadow-[0_0_10px_rgba(212,175,55,0.8)]"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
