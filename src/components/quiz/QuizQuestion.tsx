@@ -195,7 +195,7 @@ const QuizQuestion = ({
     <div className="w-full space-y-5 animate-fade-in">
       {/* Question - Centered */}
       <div className="space-y-2 text-center">
-        <span className="text-xs font-bold text-cyan-400/80 uppercase tracking-[0.2em]">
+        <span className="text-xs font-bold text-gold uppercase tracking-[0.2em]">
           Pergunta {questionNumber}
         </span>
         <h2 className="text-xl md:text-2xl font-bold text-white leading-snug drop-shadow-lg">
@@ -217,14 +217,14 @@ const QuizQuestion = ({
                   "relative flex flex-col items-center p-3 rounded-2xl border-2 transition-all duration-200",
                   "hover:scale-[1.02] active:scale-[0.97] group",
                   isSelected
-                    ? "bg-white/15 border-cyan-400/50 ring-2 ring-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                    : "bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/10",
+                    ? "bg-white/15 border-gold/50 ring-2 ring-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                    : "bg-white/5 border-white/10 hover:border-gold/30 hover:bg-white/10",
                   isLastOdd && "col-span-2 max-w-[48%] mx-auto"
                 )}
               >
                 {/* Glow effect on selected */}
                 {isSelected && (
-                  <div className="absolute -inset-0.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur opacity-30" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-gold to-gold-600 rounded-2xl blur opacity-30" />
                 )}
                 
                 <div className="relative z-10 flex flex-col items-center">
@@ -234,7 +234,7 @@ const QuizQuestion = ({
                       alt={option.label}
                       className={cn(
                         "w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover mb-2 transition-all",
-                        isSelected ? "ring-2 ring-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]" : "group-hover:shadow-lg opacity-90 group-hover:opacity-100"
+                        isSelected ? "ring-2 ring-gold shadow-[0_0_15px_rgba(212,175,55,0.4)]" : "group-hover:shadow-lg opacity-90 group-hover:opacity-100"
                       )}
                     />
                   )}
@@ -261,24 +261,24 @@ const QuizQuestion = ({
                   "relative w-full p-4 text-left rounded-xl border-2 transition-all duration-200",
                   "hover:scale-[1.01] active:scale-[0.98] group",
                   isSelected
-                    ? "bg-white/15 border-cyan-400/50 ring-2 ring-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                    : "bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/10"
+                    ? "bg-white/15 border-gold/50 ring-2 ring-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                    : "bg-white/5 border-white/10 hover:border-gold/30 hover:bg-white/10"
                 )}
               >
                 {/* Glow effect on selected */}
                 {isSelected && (
-                  <div className="absolute -inset-0.5 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl blur opacity-25" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-gold to-gold-600 rounded-xl blur opacity-25" />
                 )}
                 
                 <div className="relative z-10 flex items-center gap-4">
                   <div className={cn(
                     "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all",
                     isSelected 
-                      ? "border-cyan-400 bg-cyan-400/20 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
-                      : "border-white/30 group-hover:border-cyan-400/50"
+                      ? "border-gold bg-gold/20 shadow-[0_0_10px_rgba(212,175,55,0.5)]"
+                      : "border-white/30 group-hover:border-gold/50"
                   )}>
                     {isSelected && (
-                      <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                     )}
                   </div>
                   <span className={cn(

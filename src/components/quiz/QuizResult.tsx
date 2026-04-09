@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
-import logo from "@/assets/logo-joga-junto.png";
+import logo from "@/assets/logo-craque.png";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Trophy, Target, TrendingUp, AlertCircle, Award, Star, Zap } from "lucide-react";
 import { quizBlocks } from "@/data/quizQuestions";
@@ -16,7 +16,7 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
     const duration = 3000;
     const end = Date.now() + duration;
 
-    const colors = ['#06b6d4', '#3b82f6', '#8b5cf6', '#10b981', '#f59e0b'];
+    const colors = ['#D4AF37', '#B08A27', '#FDFDF3', '#FFFFFF', '#CA8A04'];
 
     const frame = () => {
       confetti({
@@ -111,19 +111,25 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
   const getShortTitle = (title: string) => shortTitles[title.split('(')[0].trim()] || title.split('(')[0].trim();
 
   return (
-    <div className="h-[100dvh] flex flex-col bg-[radial-gradient(ellipse_at_top,_#0f172a_0%,_#020617_50%,_#000000_100%)] relative overflow-hidden">
+    <div className="h-[100dvh] flex flex-col bg-[#050B14] relative overflow-hidden">
+      {/* Texture Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
+
+      {/* Subtle Navy Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-light/20 via-transparent to-black pointer-events-none" />
+
       {/* VR Premium Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient orbs with glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-cyan-500/30 via-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-gradient-to-tr from-violet-600/40 to-fuchsia-500/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-gradient-to-tl from-emerald-500/30 to-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-gold/20 via-gold-600/10 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-gradient-to-tr from-gold-500/20 to-gold-700/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-gradient-to-tl from-gold/15 to-gold-600/10 rounded-full blur-3xl" />
         
         {/* Grid overlay - VR style */}
-        <div className="absolute inset-0 opacity-[0.08]" style={{
+        <div className="absolute inset-0 opacity-[0.05]" style={{
           backgroundImage: `
-            linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(212, 175, 55, 0.4) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(212, 175, 55, 0.4) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
           transform: 'perspective(500px) rotateX(60deg)',
@@ -144,20 +150,20 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
             {/* Header - Premium Glass */}
             <div className="relative group">
               {/* Glow behind card */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-violet-500/50 rounded-3xl blur-xl opacity-50" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-gold-400/40 via-gold/40 to-gold-600/40 rounded-3xl blur-xl opacity-50" />
               
-              <div className="relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/20 shadow-[0_0_50px_rgba(6,182,212,0.15)]">
+              <div className="relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/20 shadow-[0_0_50px_rgba(212,175,55,0.15)]">
                 <div className="flex items-center gap-4">
                   {/* Score Circle - Neon effect */}
                   <div className="relative w-16 h-16 flex-shrink-0">
                     {/* Outer glow */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-lg opacity-40 animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full blur-lg opacity-40 animate-pulse" />
                     <svg className="w-full h-full transform -rotate-90 relative z-10" viewBox="0 0 80 80">
                       <defs>
                         <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#06b6d4" />
-                          <stop offset="50%" stopColor="#3b82f6" />
-                          <stop offset="100%" stopColor="#8b5cf6" />
+                          <stop offset="0%" stopColor="#FDE047" />
+                          <stop offset="50%" stopColor="#D4AF37" />
+                          <stop offset="100%" stopColor="#B08A27" />
                         </linearGradient>
                         <filter id="glow">
                           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -178,7 +184,7 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                   
                   {/* Profile */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-cyan-300/80 uppercase tracking-[0.2em] font-semibold">Diagnóstico Completo</p>
+                    <p className="text-xs text-gold/80 uppercase tracking-[0.2em] font-semibold">Diagnóstico Completo</p>
                     <div className="flex items-center gap-2 mt-1.5">
                       <ProfileIcon className={`w-6 h-6 flex-shrink-0 ${profile.color} drop-shadow-[0_0_8px_currentColor]`} />
                       <span className={`font-bold text-lg ${profile.color} drop-shadow-[0_0_10px_currentColor]`}>{profile.level}</span>
@@ -186,18 +192,18 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                   </div>
                   
                   {/* Logo small */}
-                  <img src={logo} alt="Joga Junto" className="h-10 object-contain opacity-70" />
+                  <img src={logo} alt="Craque em Construção" className="h-10 object-contain opacity-90 drop-shadow-md" />
                 </div>
               </div>
             </div>
 
             {/* Block Scores Grid - Holographic */}
             <div className="relative flex-1">
-              <div className="absolute -inset-1 bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-3xl blur-xl opacity-30" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-gold/30 via-transparent to-gold-600/30 rounded-3xl blur-xl opacity-30" />
               
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] h-full">
                 <div className="flex items-center gap-2 mb-3">
-                  <Award className="w-5 h-5 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                  <Award className="w-5 h-5 text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
                   <h3 className="font-bold text-sm text-white tracking-wide">Pontuação por Área</h3>
                 </div>
                 
@@ -268,19 +274,19 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
 
             {/* Restart Button - Premium Neon */}
             <div className="relative group mt-2">
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
               <Button 
                 onClick={onRestart}
                 size="lg"
-                className="relative w-full h-14 text-base font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 text-white hover:opacity-90 rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all active:scale-[0.98] border-0 [-webkit-appearance:none]"
+                className="relative w-full h-14 text-base font-bold bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-90 hover:text-black rounded-xl shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all active:scale-[0.98] border-0 [-webkit-appearance:none]"
               >
                 <RefreshCw className="w-5 h-5 mr-2" />
                 Refazer Diagnóstico
               </Button>
             </div>
             
-            <p className="text-center text-xs text-cyan-400/50 tracking-widest py-3 font-medium">
-              Powered by Joga Junto
+            <p className="text-center text-xs text-gold/50 tracking-widest py-3 font-medium">
+              Powered by Craque em Construção
             </p>
           </div>
         </div>

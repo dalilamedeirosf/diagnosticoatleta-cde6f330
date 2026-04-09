@@ -6,7 +6,7 @@ import QuizStart from "./QuizStart";
 import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizResult from "./QuizResult";
-import logo from "@/assets/logo-joga-junto.png";
+import logo from "@/assets/logo-craque.png";
 
 type QuizState = "start" | "questions" | "result";
 
@@ -88,19 +88,25 @@ const QuizContainer = () => {
   }
 
   return (
-    <div className="h-[100dvh] flex flex-col relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_#0f172a_0%,_#020617_50%,_#000000_100%)]">
+    <div className="h-[100dvh] flex flex-col relative overflow-hidden bg-[#050B14]">
+      {/* Texture Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
+
+      {/* Subtle Navy Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-light/20 via-transparent to-black pointer-events-none" />
+
       {/* VR Premium Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {/* Animated gradient orbs */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-gradient-to-b from-cyan-500/25 via-blue-500/15 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gradient-to-tr from-violet-600/20 to-fuchsia-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-tl from-emerald-500/15 to-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-gradient-to-b from-gold/15 via-gold-600/5 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gradient-to-tr from-gold-500/10 to-gold-700/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-tl from-gold/10 to-gold-600/5 rounded-full blur-3xl" />
         
         {/* Grid overlay - VR style */}
-        <div className="absolute inset-0 opacity-[0.06]" style={{
+        <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: `
-            linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(212, 175, 55, 0.4) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(212, 175, 55, 0.4) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
           transform: 'perspective(500px) rotateX(60deg)',
@@ -123,7 +129,7 @@ const QuizContainer = () => {
       </div>
 
       {/* Header - Glass effect */}
-      <header className="flex-shrink-0 z-10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border-b border-cyan-400/10 px-4 py-2 safe-area-top">
+      <header className="flex-shrink-0 z-10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border-b border-gold/10 px-4 py-2 safe-area-top">
         <div className="max-w-md mx-auto">
           <QuizProgress 
             currentBlockIndex={currentBlockIndex}
@@ -137,9 +143,9 @@ const QuizContainer = () => {
       <main className="flex-1 flex items-center justify-center px-3 py-2 relative z-10 min-h-0">
         <div className="relative max-w-lg w-full max-h-full">
           {/* Card glow */}
-          <div className="absolute -inset-1 bg-gradient-to-br from-cyan-500/20 via-blue-500/15 to-violet-500/20 rounded-3xl blur-xl opacity-50" />
+          <div className="absolute -inset-1 bg-gradient-to-br from-gold/15 via-gold-600/10 to-gold-800/15 rounded-3xl blur-xl opacity-50" />
           
-          <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-5 shadow-[0_0_60px_rgba(6,182,212,0.1)] border border-white/15 max-h-full overflow-y-auto">
+          <div className="relative bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl rounded-2xl p-5 shadow-[0_0_60px_rgba(212,175,55,0.05)] border border-white/10 max-h-full overflow-y-auto">
             <QuizQuestion 
               key={currentQuestion.id}
               question={currentQuestion}
@@ -153,26 +159,26 @@ const QuizContainer = () => {
       </main>
 
       {/* Navigation - Premium glass footer */}
-      <footer className="flex-shrink-0 bg-gradient-to-t from-white/5 to-transparent backdrop-blur-sm border-t border-cyan-400/10 px-4 py-2 z-10 safe-area-bottom">
+      <footer className="flex-shrink-0 bg-gradient-to-t from-white/5 to-transparent backdrop-blur-sm border-t border-gold/10 px-4 py-2 z-10 safe-area-bottom">
         <div className="max-w-md mx-auto flex gap-3">
           <div className="relative flex-1">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-slate-400/30 to-slate-500/30 rounded-xl blur opacity-40" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-slate-400/20 to-slate-500/20 rounded-xl blur opacity-40" />
             <Button
               variant="ghost"
               onClick={handleBack}
               disabled={isFirstQuestion}
-              className="relative w-full h-12 text-base font-semibold rounded-xl bg-slate-700/80 border border-slate-500/50 text-white hover:bg-slate-600/80 backdrop-blur-sm disabled:opacity-30 [-webkit-appearance:none] [color:white_!important]"
+              className="relative w-full h-12 text-base font-semibold rounded-xl bg-navy/80 border border-gold/20 text-white hover:bg-navy-light/80 hover:text-gold-100 backdrop-blur-sm disabled:opacity-30 [-webkit-appearance:none] [color:white_!important]"
             >
               <ChevronLeft className="w-5 h-5 mr-1 text-white" />
               Voltar
             </Button>
           </div>
           <div className="relative flex-1 group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
             <Button
               onClick={handleNext}
               disabled={!hasSelectedOption}
-              className="relative w-full h-12 text-base font-semibold rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 text-white hover:opacity-95 transition-all active:scale-[0.98] disabled:opacity-50 border-0"
+              className="relative w-full h-12 text-base font-semibold rounded-xl bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-95 hover:text-black transition-all active:scale-[0.98] disabled:opacity-50 border-0"
             >
               {currentBlockIndex === quizBlocks.length - 1 && 
                currentQuestionIndex === currentBlock.questions.length - 1 

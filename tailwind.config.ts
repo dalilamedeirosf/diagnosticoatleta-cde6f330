@@ -47,6 +47,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        gold: {
+          DEFAULT: "#D4AF37",
+          100: "#FDFDF3",
+          200: "#F9F8E1",
+          300: "#F4F0C3",
+          400: "#EEE59E",
+          500: "#D4AF37",
+          600: "#B08A27",
+          700: "#8A6918",
+          800: "#694D11",
+          900: "#4D360B",
+        },
+        navy: {
+          DEFAULT: "#0F172A",
+          dark: "#050B14",
+          light: "#1A2542",
+        },
         quiz: {
           green: "hsl(var(--quiz-green))",
           yellow: "hsl(var(--quiz-yellow))",
