@@ -6,7 +6,7 @@ import QuizStart from "./QuizStart";
 import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizResult from "./QuizResult";
-import logo from "@/assets/logo-craque.png";
+import logo from "@/assets/craque-em-contrução1.png";
 
 type QuizState = "start" | "questions" | "result";
 
