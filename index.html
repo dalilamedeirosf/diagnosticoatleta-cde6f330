@@ -1,26 +1,330 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <title>Scout Heart Track - Joga Junto</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <title>Diagnóstico do Atleta - Joga Junto</title>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      (function () {
+        try {
+          var WEBHOOK_URL = "https://nwook.atendaia.com/webhook/Diagnostico-do-Atleta";
+          var STORAGE_KEY = "__JJ_DIAGNOSTICO_RESPOSTAS__";
+
+          function nowISO() {
+            try { return new Date().toISOString(); } catch (e) { return ""; }
+          }
+
+          function txt(el) {
+            try {
+              if (!el) return "";
+              return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+            } catch (e) { return ""; }
+          }
+
+          function showBadge(msg) {
+            try {
+              var el = document.getElementById("__n8n_badge__");
+              if (!el) {
+                el = document.createElement("div");
+                el.id = "__n8n_badge__";
+                el.style.position = "fixed";
+                el.style.zIndex = "999999";
+                el.style.right = "12px";
+                el.style.bottom = "12px";
+                el.style.padding = "10px 12px";
+                el.style.borderRadius = "10px";
+                el.style.fontFamily = "Arial, sans-serif";
+                el.style.fontSize = "12px";
+                el.style.background = "rgba(0,0,0,0.65)";
+                el.style.color = "#fff";
+                el.style.boxShadow = "0 6px 20px rgba(0,0,0,0.35)";
+                document.body.appendChild(el);
+              }
+              el.textContent = msg;
+            } catch (e) {}
+          }
+
+          function getAll() {
+            try { return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "[]") || []; }
+            catch (e) { return []; }
+          }
+
+          function setAll(arr) {
+            try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(arr || [])); } catch (e) {}
+          }
+
+          function sendNoCors(payloadObj) {
+            try {
+              var payload = JSON.stringify(payloadObj);
+
+              try {
+                if (navigator.sendBeacon) {
+                  var ok = navigator.sendBeacon(
+                    WEBHOOK_URL,
+                    new Blob([payload], { type: "text/plain;charset=UTF-8" })
+                  );
+                  if (ok) return true;
+                }
+              } catch (e) {}
+
+              fetch(WEBHOOK_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "text/plain;charset=UTF-8" },
+                body: payload
+              }).catch(function(){});
+
+              return true;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function isInvalidAnswer(a) {
+            if (a === null || a === undefined) return true;
+            var s = ("" + a).trim();
+            if (s.length === 0) return true;
+
+            var low = s.toLowerCase();
+            return (
+              low.indexOf("próxima") !== -1 || low.indexOf("proxima") !== -1 ||
+              low.indexOf("voltar") !== -1 ||
+              low.indexOf("ver resultado") !== -1 ||
+              low.indexOf("finalizar") !== -1 ||
+              low.indexOf("concluir") !== -1 ||
+              low.indexOf("enviar") !== -1 ||
+              low.indexOf("refazer") !== -1 ||
+              low.indexOf("pontuação por área") !== -1 || low.indexOf("pontuacao por area") !== -1 ||
+              low.indexOf("diagnóstico completo") !== -1 || low.indexOf("diagnostico completo") !== -1
+            );
+          }
+
+          function getCurrentQuestion() {
+            try {
+              var root = document.getElementById("root");
+              if (!root) return "";
+
+              var hs = root.querySelectorAll("h2, h3");
+              var best = "";
+
+              for (var i = 0; i < hs.length; i++) {
+                var t = txt(hs[i]);
+                if (!t) continue;
+                if (/^pergunta\s*\d+/i.test(t)) continue;
+                if (t.length > best.length) best = t;
+              }
+              return best;
+            } catch (e) { return ""; }
+          }
+
+          function isLikelyRealAnswer(s) {
+            try {
+              if (!s) return false;
+              s = ("" + s).trim();
+              if (s.length === 0) return false;
+
+              if (s === "🟡" || s === "🔵" || s === "🟠" || s === "🟢" || s === "🔴") return true;
+              if (/^\d+%?$/.test(s)) return true;
+              if (s.length <= 45) return true;
+              return false;
+            } catch (e) { return false; }
+          }
+
+          function getOptionElFromClick(target) {
+            try {
+              if (!target || !target.closest) return null;
+              return (
+                target.closest("[role='radio']") ||
+                target.closest("button") ||
+                target.closest("label") ||
+                target.closest("li")
+              );
+            } catch (e) { return null; }
+          }
+
+          function getAnswerTextFromOption(opt) {
+            try {
+              if (!opt) return "";
+
+              var a = txt(opt);
+
+              if (a.length > 60) {
+                var inners = opt.querySelectorAll ? opt.querySelectorAll("span, p, strong, b, small, div") : [];
+                for (var i = 0; i < inners.length; i++) {
+                  var s = txt(inners[i]);
+                  if (!s) continue;
+                  if (isLikelyRealAnswer(s) && !isInvalidAnswer(s)) return s;
+                }
+              }
+
+              if (!isLikelyRealAnswer(a)) return "";
+              return a;
+            } catch (e) { return ""; }
+          }
+
+          function upsertAnswer(question, answer) {
+            try {
+              if (!question) return;
+              if (answer === null || answer === undefined) return;
+
+              answer = ("" + answer).trim();
+              if (answer.length === 0) return;
+              if (isInvalidAnswer(answer)) return;
+
+              var arr = getAll();
+              for (var i = 0; i < arr.length; i++) {
+                if (arr[i] && arr[i].pergunta === question) {
+                  arr[i].resposta = answer;
+                  arr[i].updatedAt = nowISO();
+                  setAll(arr);
+                  return;
+                }
+              }
+
+              arr.push({
+                pergunta: question,
+                resposta: answer,
+                createdAt: nowISO(),
+                updatedAt: nowISO()
+              });
+
+              setAll(arr);
+            } catch (e) {}
+          }
+
+          // ✅ MÉTRICAS ROBUSTAS (inclui Família certinho)
+          function captureResultMetricsRegex() {
+            try {
+              var root = document.getElementById("root");
+              if (!root) return null;
+
+              var full = txt(root);
+              var low = full.toLowerCase();
+
+              if (low.indexOf("diagnóstico completo") === -1 && low.indexOf("diagnostico completo") === -1) return null;
+              if (low.indexOf("pontuação por área") === -1 && low.indexOf("pontuacao por area") === -1) return null;
+
+              // geral = primeiro %
+              var m0 = full.match(/(\d+)%/);
+              var geral = m0 ? parseInt(m0[1], 10) : null;
+
+              function pick(pattern) {
+                // tolerante: pega % até 80 caracteres depois
+                var re = new RegExp("(" + pattern + ")[\s\S]{0,80}?(\d+)%", "i");
+                var m = full.match(re);
+                return m ? parseInt(m[2], 10) : null;
+              }
+
+              return {
+                geral: geral,
+                areas: {
+                  perfil: pick("Perfil"),
+                  performance: pick("Performance"),
+                  mentalidade: pick("Mentalidade"),
+                  // ✅ família super tolerante (com/sem acento, maiúscula, e variações)
+                  familia: pick("Fam[ií]lia"),
+                  rotina: pick("Rotina"),
+                  objetivos: pick("Objetivos")
+                }
+              };
+            } catch (e) {
+              return null;
+            }
+          }
+
+          // ====== PING ======
+          showBadge("N8N: ON ✅");
+          window.addEventListener("load", function () {
+            sendNoCors({
+              event: "ping",
+              when: nowISO(),
+              url: window.location.href,
+              referrer: document.referrer || null,
+              userAgent: navigator.userAgent
+            });
+          });
+
+          // ====== CLIQUES ======
+          document.addEventListener("click", function (e) {
+            try {
+              // botão final envia tudo
+              var btn = e.target && e.target.closest ? e.target.closest("button") : null;
+              if (btn) {
+                var bt = txt(btn).toLowerCase();
+                if (
+                  bt.indexOf("ver resultado") !== -1 ||
+                  bt.indexOf("resultado") !== -1 ||
+                  bt.indexOf("finalizar") !== -1 ||
+                  bt.indexOf("concluir") !== -1 ||
+                  bt.indexOf("enviar") !== -1
+                ) {
+                  setTimeout(function () {
+                    var respostas = (getAll() || []).filter(function (r) {
+                      if (!r || !r.pergunta) return false;
+                      if (r.resposta === null || r.resposta === undefined) return false;
+                      var s = ("" + r.resposta).trim();
+                      if (s.length === 0) return false;
+                      if (isInvalidAnswer(s)) return false;
+                      return true;
+                    });
+
+                    var metrics = captureResultMetricsRegex();
+
+                    sendNoCors({
+                      event: "final",
+                      quizId: "diagnostico-do-atleta",
+                      submittedAt: nowISO(),
+                      totalRespostas: respostas.length,
+                      respostas: respostas,
+                      resultado: metrics,
+                      page: {
+                        url: window.location.href,
+                        referrer: document.referrer || null,
+                        userAgent: navigator.userAgent
+                      }
+                    });
+
+                    showBadge("N8N: FINAL ✅");
+                  }, 800);
+                  return;
+                }
+              }
+
+              // opção clicada
+              var opt = getOptionElFromClick(e.target);
+              if (!opt) return;
+
+              var answer = getAnswerTextFromOption(opt);
+              if (!answer) return;
+              if (isInvalidAnswer(answer)) return;
+
+              var question = getCurrentQuestion();
+              if (!question) return;
+
+              upsertAnswer(question, answer);
+
+              // (opcional) envia cada resposta pra debug
+              sendNoCors({
+                event: "answer",
+                quizId: "diagnostico-do-atleta",
+                when: nowISO(),
+                pergunta: question,
+                resposta: answer,
+                page: { url: window.location.href }
+              });
+
+            } catch (e) {}
+          });
+
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>
