@@ -6,7 +6,7 @@ import { RefreshCw, Trophy, Target, TrendingUp, AlertCircle, Award, Star, Zap } 
 import { quizBlocks } from "@/data/quizQuestions";
 
 interface QuizResultProps {
-  answers: Record<number, number>;
+  answers: Record<number, number | number[]>;
   onRestart: () => void;
 }
 
@@ -58,7 +58,11 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
     }, 0);
     
     const actual = blockQuestions.reduce((acc, q) => {
-      return acc + (answers[q.id] || 0);
+      const ans = answers[q.id];
+      if (Array.isArray(ans)) {
+        return acc + ans.reduce((s, v) => s + v, 0);
+      }
+      return acc + (ans || 0);
     }, 0);
     
     return {
