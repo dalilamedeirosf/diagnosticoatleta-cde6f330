@@ -61,14 +61,37 @@ const QuizContainer = () => {
     try {
       const respostas: Array<{ pergunta: string; resposta: string; createdAt: string; updatedAt: string }> = [];
       const submittedAt = new Date().toISOString();
+      // Dados do formulário inicial entram como respostas
+      const formEntries: Array<[string, string]> = [
+        ["Nome completo do atleta", formData?.athleteName ?? ""],
+        ["Idade do atleta", formData?.athleteAge ? `${formData.athleteAge} Anos` : ""],
+        ["Nome do responsável", formData?.parentName ?? ""],
+        ["WhatsApp do responsável", formData?.parentWhatsapp ?? ""],
+        ["Pé predominante", formData?.preferredFoot ?? ""],
+        ["Posição que joga", formData?.position ?? ""],
+        ["Em qual piso o atleta joga?", formData?.surface ?? ""],
+        ["Altura (cm)", formData?.heightCm ?? ""],
+        ["Peso (kg)", formData?.weightKg ?? ""],
+      ];
+      for (const [pergunta, resposta] of formEntries) {
+        respostas.push({ pergunta, resposta, createdAt: submittedAt, updatedAt: submittedAt });
+      }
+      // Todas as perguntas do quiz (mesmo as não respondidas)
       for (const block of quizBlocks) {
         for (const q of block.questions) {
           const ans = answers[q.id];
-          if (ans === undefined) continue;
           const ts = answerTimestampsRef.current[q.id] || submittedAt;
           const labelOf = (v: number) => q.options.find(o => o.value === v)?.label ?? String(v);
-          const respostaStr = Array.isArray(ans) ? ans.map(labelOf).join(", ") : labelOf(ans as number);
-          respostas.push({ pergunta: q.question, resposta: respostaStr, createdAt: ts, updatedAt: ts });
+          let respostaStr = "";
+          if (ans !== undefined) {
+            respostaStr = Array.isArray(ans) ? ans.map(labelOf).join(", ") : labelOf(ans as number);
+          }
+          respostas.push({
+            pergunta: `[Bloco ${block.id} - ${block.title}] ${q.question}`,
+            resposta: respostaStr || "Não respondido",
+            createdAt: ts,
+            updatedAt: ts,
+          });
         }
       }
       const payload = {
