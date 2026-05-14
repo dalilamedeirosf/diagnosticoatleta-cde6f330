@@ -58,7 +58,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         {/* Premium Logo with Glow */}
         <div className="relative flex justify-center mb-4 group">
           {/* Outer glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gold to-gold-600 rounded-full blur-3xl scale-150 opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gold to-gold-600 rounded-full blur-3xl scale-150 opacity-5 group-hover:opacity-20 transition-opacity duration-1000" />
           <img 
             src={logo} 
             alt="Craque em Construção" 
@@ -108,12 +108,12 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       {/* Premium CTA Section */}
       <div className="w-full max-w-md space-y-5 flex flex-col items-center relative z-10 animate-fade-in pb-4" style={{ animationDelay: '0.3s' }}>
         <div className="relative group w-full">
-          <div className="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold to-gold-500 rounded-2xl blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700" />
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-200 via-gold to-yellow-400 rounded-2xl blur-md opacity-60" />
+          <div className="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold to-gold-500 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-200 via-gold to-yellow-400 rounded-2xl blur-md opacity-30" />
           <Button
             onClick={onStart}
             size="lg"
-            className="relative w-full h-16 text-lg font-extrabold bg-gradient-to-r from-yellow-300 via-gold to-yellow-500 text-black hover:opacity-100 hover:text-black hover:scale-[1.03] rounded-2xl shadow-[0_0_60px_rgba(255,215,0,0.85),inset_0_1px_0_rgba(255,255,255,0.6)] ring-2 ring-yellow-200/70 transition-all duration-300 active:scale-[0.98] border-0"
+            className="relative w-full h-16 text-lg font-extrabold bg-gradient-to-r from-yellow-300 via-gold to-yellow-500 text-black hover:opacity-100 hover:text-black hover:scale-[1.03] rounded-2xl shadow-[0_0_30px_rgba(255,215,0,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] ring-1 ring-yellow-200/50 transition-all duration-300 active:scale-[0.98] border-0"
           >
             <Play className="w-6 h-6 mr-3 fill-current" />
             <span className="drop-shadow-[0_1px_0_rgba(255,255,255,0.4)]">Fazer Diagnóstico Agora</span>
