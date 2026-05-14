@@ -69,6 +69,36 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Competições em nível profissional", value: 5 },
         ],
       },
+      {
+        id: 101,
+        question: "Qual função tática ele cumpre HOJE dentro da posição?",
+        options: [
+          { label: "Ainda não tem função clara", value: 1 },
+          { label: "Função genérica da posição", value: 2 },
+          { label: "Função definida, mas oscila", value: 3 },
+          { label: "Função clara e bem executada (ex.: volante construtor, extremo de amplitude)", value: 4 },
+        ],
+      },
+      {
+        id: 102,
+        question: "Ele entende qual é a 'função dentro da função' que o treinador pede?",
+        options: [
+          { label: "Não entende", value: 1 },
+          { label: "Entende parcialmente", value: 2 },
+          { label: "Entende, mas erra na execução", value: 3 },
+          { label: "Entende e executa bem", value: 4 },
+        ],
+      },
+      {
+        id: 103,
+        question: "Histórico de lesões do atleta:",
+        options: [
+          { label: "Lesão grave recente / recorrente", value: 1 },
+          { label: "Lesões leves frequentes", value: 2 },
+          { label: "Já teve, mas recuperou bem", value: 3 },
+          { label: "Nunca teve lesão relevante", value: 4 },
+        ],
+      },
     ],
   },
   {
@@ -123,6 +153,37 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Não está claro ainda", value: 0 },
         ],
       },
+      {
+        id: 201,
+        question: "Como ele lê o jogo quando NÃO está com a bola?",
+        options: [
+          { label: "Reage atrasado, sempre corre atrás", value: 1 },
+          { label: "Reage no tempo certo, mas não antecipa", value: 2 },
+          { label: "Antecipa em algumas jogadas", value: 3 },
+          { label: "Antecipa constantemente, lê o jogo à frente", value: 4 },
+        ],
+      },
+      {
+        id: 202,
+        question: "Velocidade de decisão com a bola:",
+        options: [
+          { label: "Demora muito, perde a jogada", value: 1 },
+          { label: "Decide, mas hesita bastante", value: 2 },
+          { label: "Decide rápido na maioria das vezes", value: 3 },
+          { label: "Decide rápido e com qualidade", value: 4 },
+        ],
+      },
+      {
+        id: 203,
+        question: "Em qual fase do jogo ele MAIS trava?",
+        options: [
+          { label: "Saída de bola / construção", value: 1 },
+          { label: "Criação / passe decisivo", value: 2 },
+          { label: "1x1 / finalização", value: 3 },
+          { label: "Pressão / recomposição defensiva", value: 4 },
+          { label: "Não trava em fase específica", value: 5 },
+        ],
+      },
     ],
   },
   {
@@ -154,6 +215,39 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Gosta, mas oscila", value: 3 },
           { label: "Gosta de competir", value: 4 },
           { label: "Se sente motivado e cresce em competição", value: 5 },
+        ],
+      },
+      {
+        id: 301,
+        question: "O que mais derruba o atleta emocionalmente?",
+        isMultiSelect: true,
+        options: [
+          { label: "Cobrança da família", value: 1 },
+          { label: "Cobrança do treinador", value: 2 },
+          { label: "Comparação com outros atletas", value: 3 },
+          { label: "Erros próprios em campo", value: 4 },
+          { label: "Não ser titular / pouco minutos", value: 5 },
+          { label: "Nada o derruba significativamente", value: 6 },
+        ],
+      },
+      {
+        id: 302,
+        question: "Em jogos grandes (decisões, finais, observadores), ele:",
+        options: [
+          { label: "Trava, joga muito abaixo", value: 1 },
+          { label: "Fica nervoso e oscila", value: 2 },
+          { label: "Mantém o nível normal", value: 3 },
+          { label: "Cresce e joga acima da média", value: 4 },
+        ],
+      },
+      {
+        id: 303,
+        question: "Sobre medo de errar e busca por aprovação:",
+        options: [
+          { label: "Joga preso, com medo constante de errar", value: 1 },
+          { label: "Busca muito aprovação dos outros", value: 2 },
+          { label: "Tem momentos de insegurança", value: 3 },
+          { label: "Joga livre, confia nas próprias decisões", value: 4 },
         ],
       },
     ],
@@ -204,6 +298,26 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Celebra evolução e atitude", value: 4, image: "q18-celebrate" },
         ],
       },
+      {
+        id: 401,
+        question: "A família cobra principalmente:",
+        options: [
+          { label: "Resultado/rendimento (gols, vitórias)", value: 1 },
+          { label: "Mistura entre resultado e esforço", value: 2 },
+          { label: "Processo e evolução", value: 3 },
+          { label: "Não cobra, apenas apoia", value: 4 },
+        ],
+      },
+      {
+        id: 402,
+        question: "Nível de envolvimento da família na rotina do atleta:",
+        options: [
+          { label: "Envolvida demais (sufoca)", value: 1 },
+          { label: "Pouco envolvida (distante)", value: 2 },
+          { label: "Equilibrada na maior parte do tempo", value: 3 },
+          { label: "Presente, organizada e equilibrada", value: 4 },
+        ],
+      },
     ],
   },
   {
@@ -240,6 +354,36 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Um pouco controlada", value: 2 },
           { label: "Bem orientada", value: 3 },
           { label: "Planejada para performance", value: 4 },
+        ],
+      },
+      {
+        id: 501,
+        question: "Musculação / preparo físico complementar:",
+        options: [
+          { label: "Não faz", value: 1 },
+          { label: "Faz esporadicamente", value: 2 },
+          { label: "1 a 2 vezes por semana", value: 3 },
+          { label: "3 ou mais vezes por semana com orientação", value: 4 },
+        ],
+      },
+      {
+        id: 502,
+        question: "Trabalho preventivo (mobilidade, fisioterapia, alongamento):",
+        options: [
+          { label: "Nunca faz", value: 1 },
+          { label: "Só quando sente dor", value: 2 },
+          { label: "Faz com alguma frequência", value: 3 },
+          { label: "Rotina preventiva consistente", value: 4 },
+        ],
+      },
+      {
+        id: 503,
+        question: "Limitação física mais clara hoje:",
+        options: [
+          { label: "Velocidade / explosão", value: 1 },
+          { label: "Resistência / fôlego", value: 2 },
+          { label: "Força / contato físico", value: 3 },
+          { label: "Sem limitação física relevante", value: 4 },
         ],
       },
     ],
@@ -289,6 +433,37 @@ export const quizBlocks: QuizBlock[] = [
           { label: "Ajustes básicos", value: 2 },
           { label: "Mudanças reais na rotina", value: 3 },
           { label: "Compromisso total com acompanhamento", value: 4 },
+        ],
+      },
+      {
+        id: 601,
+        question: "Meta clara para os próximos 90 dias:",
+        options: [
+          { label: "Ainda não temos meta definida", value: 1 },
+          { label: "Meta vaga, sem detalhes", value: 2 },
+          { label: "Meta clara, mas sem plano", value: 3 },
+          { label: "Meta clara com plano de ação", value: 4 },
+        ],
+      },
+      {
+        id: 602,
+        question: "Qual hábito/comportamento mais segura a evolução dele HOJE?",
+        options: [
+          { label: "Excesso de telas / pouco descanso", value: 1 },
+          { label: "Falta de disciplina nos treinos extras", value: 2 },
+          { label: "Insegurança / autocobrança excessiva", value: 3 },
+          { label: "Falta de orientação técnica/tática", value: 4 },
+          { label: "Nenhum hábito relevante segura", value: 5 },
+        ],
+      },
+      {
+        id: 603,
+        question: "Como o treinador atual se comunica com ele?",
+        options: [
+          { label: "Duro / autoritário", value: 1 },
+          { label: "Pouco se comunica", value: 2 },
+          { label: "Técnico e objetivo", value: 3 },
+          { label: "Equilibrado: técnico + emocional", value: 4 },
         ],
       },
     ],
