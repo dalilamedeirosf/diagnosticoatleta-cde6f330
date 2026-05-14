@@ -15,7 +15,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       {/* VR Premium Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient orbs with glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-gold/20 via-gold-600/10 to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-gold/20 via-gold-600/10 to-transparent rounded-full blur-3xl opacity-50" />
         <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] bg-gradient-to-tr from-gold-400/10 to-gold-700/5 rounded-full blur-3xl" />
         <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-gradient-to-tl from-gold/15 to-gold-600/10 rounded-full blur-3xl" />
         
@@ -58,7 +58,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         {/* Premium Logo with Glow */}
         <div className="relative flex justify-center mb-4 group">
           {/* Outer glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gold to-gold-600 rounded-full blur-3xl scale-150 opacity-20 group-hover:opacity-40 transition-opacity animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gold to-gold-600 rounded-full blur-3xl scale-150 opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
           <img 
             src={logo} 
             alt="Craque em Construção" 
@@ -108,8 +108,8 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       {/* Premium CTA Section */}
       <div className="w-full max-w-md space-y-5 flex flex-col items-center relative z-10 animate-fade-in pb-4" style={{ animationDelay: '0.3s' }}>
         <div className="relative group w-full">
-          <div className="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold to-gold-500 rounded-2xl blur-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-200 via-gold to-yellow-400 rounded-2xl blur-md opacity-80" />
+          <div className="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold to-gold-500 rounded-2xl blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-200 via-gold to-yellow-400 rounded-2xl blur-md opacity-60" />
           <Button
             onClick={onStart}
             size="lg"
