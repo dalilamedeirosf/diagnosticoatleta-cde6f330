@@ -13,6 +13,10 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
   const [parentName, setParentName] = useState("");
   const [parentWhatsapp, setParentWhatsapp] = useState("");
   const [preferredFoot, setPreferredFoot] = useState("");
+  const [position, setPosition] = useState("");
+  const [surface, setSurface] = useState("");
+  const [heightCm, setHeightCm] = useState("");
+  const [weightKg, setWeightKg] = useState("");
 
   const maskPhone = (value: string) => {
     const digits = value.replace(/\D/g, "");
@@ -21,7 +25,16 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
     return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
   };
 
-  const isFormValid = athleteName.trim().length > 2 && athleteAge && parentName.trim().length > 2 && parentWhatsapp.replace(/\D/g, '').length >= 10 && preferredFoot;
+  const isFormValid =
+    athleteName.trim().length > 2 &&
+    athleteAge &&
+    parentName.trim().length > 2 &&
+    parentWhatsapp.replace(/\D/g, '').length >= 10 &&
+    preferredFoot &&
+    position &&
+    surface &&
+    heightCm &&
+    weightKg;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +44,11 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
         athleteAge,
         parentName,
         parentWhatsapp,
-        preferredFoot
+        preferredFoot,
+        position,
+        surface,
+        heightCm,
+        weightKg,
       });
     }
   };
@@ -147,6 +164,91 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
                       <SelectItem value="Ambos" className="focus:bg-gold/20 focus:text-gold-100">Ambos</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+              </div>
+            </div>
+
+            {/* Position */}
+            <div className="space-y-1.5 flex flex-col relative z-30">
+              <label className="text-sm font-medium text-white/90 ml-1">Posição que joga</label>
+              <div className="relative group w-full">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/50 to-gold-600/50 rounded-xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="relative">
+                  <Select value={position} onValueChange={setPosition}>
+                    <SelectTrigger className="w-full h-12 bg-white/5 border-white/10 text-left text-white focus:ring-0 focus:border-gold/50 rounded-xl shadow-inner outline-none px-4 !ring-offset-0 !ring-transparent">
+                      <SelectValue placeholder="Selecione a posição" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#0b1426] border-white/10 text-white shadow-xl rounded-xl max-h-60">
+                      <SelectItem value="Goleiro" className="focus:bg-gold/20 focus:text-gold-100">Goleiro</SelectItem>
+                      <SelectItem value="Zagueiro" className="focus:bg-gold/20 focus:text-gold-100">Zagueiro</SelectItem>
+                      <SelectItem value="Lateral" className="focus:bg-gold/20 focus:text-gold-100">Lateral</SelectItem>
+                      <SelectItem value="Volante" className="focus:bg-gold/20 focus:text-gold-100">Volante</SelectItem>
+                      <SelectItem value="Meia" className="focus:bg-gold/20 focus:text-gold-100">Meia</SelectItem>
+                      <SelectItem value="Extremo / Ponta" className="focus:bg-gold/20 focus:text-gold-100">Extremo / Ponta</SelectItem>
+                      <SelectItem value="Atacante" className="focus:bg-gold/20 focus:text-gold-100">Atacante</SelectItem>
+                      <SelectItem value="Pivô (Futsal)" className="focus:bg-gold/20 focus:text-gold-100">Pivô (Futsal)</SelectItem>
+                      <SelectItem value="Fixo (Futsal)" className="focus:bg-gold/20 focus:text-gold-100">Fixo (Futsal)</SelectItem>
+                      <SelectItem value="Ala (Futsal)" className="focus:bg-gold/20 focus:text-gold-100">Ala (Futsal)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
+            {/* Surface */}
+            <div className="space-y-1.5 flex flex-col relative z-20">
+              <label className="text-sm font-medium text-white/90 ml-1">Em qual piso o atleta joga?</label>
+              <div className="relative group w-full">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/50 to-gold-600/50 rounded-xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="relative">
+                  <Select value={surface} onValueChange={setSurface}>
+                    <SelectTrigger className="w-full h-12 bg-white/5 border-white/10 text-left text-white focus:ring-0 focus:border-gold/50 rounded-xl shadow-inner outline-none px-4 !ring-offset-0 !ring-transparent">
+                      <SelectValue placeholder="Selecione o piso" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#0b1426] border-white/10 text-white shadow-xl rounded-xl">
+                      <SelectItem value="Só Campo" className="focus:bg-gold/20 focus:text-gold-100">Só Campo</SelectItem>
+                      <SelectItem value="Só Futsal" className="focus:bg-gold/20 focus:text-gold-100">Só Futsal</SelectItem>
+                      <SelectItem value="Campo e Futsal" className="focus:bg-gold/20 focus:text-gold-100">Campo e Futsal</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
+            {/* Height & Weight */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-white/90 ml-1">Altura (cm)</label>
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/50 to-gold-600/50 rounded-xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    value={heightCm}
+                    onChange={(e) => setHeightCm(e.target.value.replace(/\D/g, '').slice(0, 3))}
+                    placeholder="Ex: 165"
+                    min={80}
+                    max={230}
+                    className="relative w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:ring-0 focus:border-gold/50 transition-all shadow-inner"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-white/90 ml-1">Peso (kg)</label>
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/50 to-gold-600/50 rounded-xl blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    value={weightKg}
+                    onChange={(e) => setWeightKg(e.target.value.replace(/\D/g, '').slice(0, 3))}
+                    placeholder="Ex: 58"
+                    min={20}
+                    max={150}
+                    className="relative w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:ring-0 focus:border-gold/50 transition-all shadow-inner"
+                    required
+                  />
                 </div>
               </div>
             </div>
