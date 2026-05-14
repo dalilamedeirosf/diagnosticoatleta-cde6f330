@@ -122,15 +122,6 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         {/* Microcopy & Pain Trigger */}
         <div className="space-y-3 w-full">
           {" "}
-          <div className="flex flex-wrap items-center justify-center gap-3 text-white/60">
-            <span className="flex items-center gap-1.5 text-xs md:text-sm font-medium">
-              <span className="text-gold opacity-80">⏱️</span> Leva menos de 2 minutos
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-gold/40 shadow-[0_0_6px_rgba(212,175,55,0.5)] hidden md:block" />
-            <span className="flex items-center gap-1.5 text-xs md:text-sm font-medium">
-              <span className="text-gold opacity-80">⚡</span> Resultado imediato
-            </span>
-          </div>
           <div className="bg-red-900/10 border border-red-500/10 rounded-lg py-2 px-4 shadow-[inset_0_0_15px_rgba(255,0,0,0.03)] backdrop-blur-sm">
              <p className="text-xs md:text-sm text-center text-red-100/70 font-medium italic">
                 "Mais de 70% dos atletas travam por falta de direção — veja se esse é o caso."
