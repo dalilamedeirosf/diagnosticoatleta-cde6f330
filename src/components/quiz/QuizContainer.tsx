@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { quizBlocks, getTotalQuestions } from "@/data/quizQuestions";
@@ -16,6 +16,9 @@ const QuizContainer = () => {
   const [currentBlockIndex, setCurrentBlockIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number | number[]>>({});
+  const [formData, setFormData] = useState<any>(null);
+  const answerTimestampsRef = useRef<Record<number, string>>({});
+  const submittedRef = useRef(false);
 
   const totalQuestions = getTotalQuestions();
   const currentBlock = quizBlocks[currentBlockIndex];
@@ -26,13 +29,14 @@ const QuizContainer = () => {
   };
 
   const handleFormComplete = (leadData: any) => {
-    console.log("Athlete Data Collected:", leadData);
+    setFormData(leadData);
     setQuizState("questions");
   };
 
   const handleSelectOption = (value: number) => {
     if (!currentQuestion) return;
-    
+    const now = new Date().toISOString();
+    answerTimestampsRef.current[currentQuestion.id] = now;
     if (currentQuestion.isMultiSelect) {
       setAnswers((prev) => {
         const currentAns = prev[currentQuestion.id];
@@ -51,6 +55,51 @@ const QuizContainer = () => {
     }
   };
 
+  const sendDiagnosticToWebhook = async () => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    try {
+      const respostas: Array<{ pergunta: string; resposta: string; createdAt: string; updatedAt: string }> = [];
+      const submittedAt = new Date().toISOString();
+      for (const block of quizBlocks) {
+        for (const q of block.questions) {
+          const ans = answers[q.id];
+          if (ans === undefined) continue;
+          const ts = answerTimestampsRef.current[q.id] || submittedAt;
+          const labelOf = (v: number) => q.options.find(o => o.value === v)?.label ?? String(v);
+          const respostaStr = Array.isArray(ans) ? ans.map(labelOf).join(", ") : labelOf(ans as number);
+          respostas.push({ pergunta: q.question, resposta: respostaStr, createdAt: ts, updatedAt: ts });
+        }
+      }
+      const payload = {
+        event: "final",
+        quizId: "diagnostico-do-atleta",
+        submittedAt,
+        nomeAtleta: formData?.athleteName ?? "",
+        nomeResponsavel: formData?.parentName ?? "",
+        idadeAtleta: formData?.athleteAge ? `${formData.athleteAge} Anos` : "",
+        whatsapp: formData?.parentWhatsapp ?? "",
+        pePredominante: formData?.preferredFoot ?? "",
+        posicao: formData?.position ?? "",
+        piso: formData?.surface ?? "",
+        alturaCm: formData?.heightCm ?? "",
+        pesoKg: formData?.weightKg ?? "",
+        totalRespostas: respostas.length,
+        respostas,
+        resultado: { geral: null, areas: {} },
+        page: { url: typeof window !== "undefined" ? window.location.href : "" },
+      };
+      await fetch("https://nwook.atendaia.com/webhook/Diagnostico-do-Atleta", {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
+        body: JSON.stringify(payload),
+        mode: "no-cors",
+      });
+    } catch (err) {
+      console.error("Falha ao enviar diagnóstico:", err);
+    }
+  };
+
   const handleNext = () => {
     if (!currentQuestion) return;
 
@@ -65,6 +114,7 @@ const QuizContainer = () => {
     } 
     // Quiz completed
     else {
+      sendDiagnosticToWebhook();
       setQuizState("result");
     }
   };
@@ -87,6 +137,9 @@ const QuizContainer = () => {
     setCurrentBlockIndex(0);
     setCurrentQuestionIndex(0);
     setAnswers({});
+    setFormData(null);
+    answerTimestampsRef.current = {};
+    submittedRef.current = false;
   };
 
   const isFirstQuestion = currentBlockIndex === 0 && currentQuestionIndex === 0;
