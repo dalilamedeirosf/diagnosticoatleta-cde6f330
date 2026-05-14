@@ -122,9 +122,9 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         {/* Microcopy & Pain Trigger */}
         <div className="space-y-3 w-full">
           {" "}
-          <div className="bg-red-900/10 border border-red-500/10 rounded-lg py-2 px-4 shadow-[inset_0_0_15px_rgba(255,0,0,0.03)] backdrop-blur-sm">
-             <p className="text-xs md:text-sm text-center text-red-100/70 font-medium italic">
-                "Mais de 70% dos atletas travam por falta de direção — veja se esse é o caso."
+          <div className="relative bg-gradient-to-r from-red-900/40 via-red-800/30 to-red-900/40 border border-red-500/40 rounded-xl py-4 px-5 shadow-[0_0_30px_rgba(239,68,68,0.25)] backdrop-blur-sm">
+             <p className="text-sm md:text-base text-center text-white font-semibold leading-snug">
+                "Mais de <span className="text-red-300 font-bold">70% dos atletas</span> travam por falta de direção — veja se esse é o caso."
              </p>
           </div>
         </div>
