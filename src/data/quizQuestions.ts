@@ -265,7 +265,6 @@ export const quizBlocks: QuizBlock[] = [
         options: [
           { label: "Pai", value: 1 },
           { label: "Mãe", value: 2 },
-          { label: "Pai e mãe", value: 3 },
           { label: "Avós", value: 4 },
           { label: "Tios", value: 5 },
           { label: "Primos", value: 6 },
