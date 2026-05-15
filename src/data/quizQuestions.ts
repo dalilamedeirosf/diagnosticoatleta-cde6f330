@@ -262,10 +262,12 @@ export const quizBlocks: QuizBlock[] = [
         id: 15,
         question: "Quem acompanha mais de perto a rotina do atleta?",
         options: [
-          { label: "Ninguém", value: 1 },
-          { label: "Um dos pais", value: 2 },
-          { label: "Ambos os pais", value: 3 },
-          { label: "Pais + outro responsável", value: 4 },
+          { label: "Pai", value: 1 },
+          { label: "Mãe", value: 2 },
+          { label: "Pai e mãe", value: 3 },
+          { label: "Avós", value: 4 },
+          { label: "Tios", value: 5 },
+          { label: "Primos", value: 6 },
         ],
       },
       {
