@@ -261,6 +261,7 @@ export const quizBlocks: QuizBlock[] = [
       {
         id: 15,
         question: "Quem acompanha mais de perto a rotina do atleta?",
+        isMultiSelect: true,
         options: [
           { label: "Pai", value: 1 },
           { label: "Mãe", value: 2 },
