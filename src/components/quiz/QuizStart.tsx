@@ -108,15 +108,14 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       {/* Premium CTA Section */}
       <div className="w-full max-w-md space-y-5 flex flex-col items-center relative z-10 animate-fade-in pb-4" style={{ animationDelay: '0.3s' }}>
         <div className="relative group w-full">
-          <div className="absolute -inset-2 bg-gradient-to-r from-gold-300 via-gold to-gold-500 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-200 via-gold to-yellow-400 rounded-2xl blur-md opacity-30" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
           <Button
             onClick={onStart}
             size="lg"
-            className="relative w-full h-16 text-lg font-extrabold bg-gradient-to-r from-yellow-300 via-gold to-yellow-500 text-black hover:opacity-100 hover:text-black hover:scale-[1.03] rounded-2xl shadow-[0_0_30px_rgba(255,215,0,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] ring-1 ring-yellow-200/50 transition-all duration-300 active:scale-[0.98] border-0"
+            className="relative w-full h-16 text-lg font-bold bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-95 hover:text-black hover:scale-[1.02] rounded-2xl shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-300 active:scale-[0.98] border-0"
           >
             <Play className="w-6 h-6 mr-3 fill-current" />
-            <span className="drop-shadow-[0_1px_0_rgba(255,255,255,0.4)]">Fazer Diagnóstico Agora</span>
+            <span>Fazer Diagnóstico Agora</span>
           </Button>
         </div>
         
