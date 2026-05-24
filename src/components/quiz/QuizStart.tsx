@@ -7,13 +7,13 @@ interface QuizStartProps {
 
 const QuizStart = ({ onStart }: QuizStartProps) => {
   return (
-    <div className="absolute inset-0 w-full bg-[#050B14] overflow-x-hidden overflow-y-auto font-sans">
-      <div className="min-h-full w-full flex flex-col items-center justify-start md:justify-center py-8">
+    <div className="flex-1 w-full bg-[#050B14] relative font-sans">
+      <div className="min-h-screen w-full flex flex-col items-center justify-start md:justify-center py-8">
         {/* Texture Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
 
       {/* VR Premium Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none fixed">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Animated gradient orbs with glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-gold/20 via-gold-600/10 to-transparent rounded-full blur-3xl opacity-50" />
         <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] bg-gradient-to-tr from-gold-400/10 to-gold-700/5 rounded-full blur-3xl" />
