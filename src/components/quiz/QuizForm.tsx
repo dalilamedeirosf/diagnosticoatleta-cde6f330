@@ -54,15 +54,15 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-4 relative z-10 animate-fade-in w-full h-full max-h-full overflow-y-auto pt-20 pb-20">
+    <div className="flex-1 flex flex-col items-center justify-center p-4 relative z-10 animate-fade-in w-full py-8 md:py-12 safe-area-bottom">
       <div className="w-full max-w-lg space-y-6">
         
         {/* Texts */}
-        <div className="space-y-2 text-center mb-8">
-          <h2 className="text-3xl font-bold text-white tracking-tight drop-shadow-lg">
+        <div className="space-y-3 text-center mb-6">
+          <h2 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-lg uppercase" style={{ color: '#e5c158' }}>
             Informações do Atleta
           </h2>
-          <p className="text-base text-gold-100/70 max-w-sm mx-auto">
+          <p className="text-lg md:text-xl font-bold text-white tracking-wide max-w-md mx-auto">
             Preencha os dados abaixo para gerar um diagnóstico preciso e personalizado
           </p>
         </div>

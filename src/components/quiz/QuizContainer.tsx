@@ -186,7 +186,7 @@ const QuizContainer = () => {
   }
 
   return (
-    <div className="absolute inset-0 flex flex-col overflow-hidden bg-[#050B14]">
+    <div className="min-h-[100dvh] w-full flex flex-col bg-[#050B14] relative overflow-x-hidden">
       {/* Texture Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
 
