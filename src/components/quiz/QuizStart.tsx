@@ -53,7 +53,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         <div className="absolute bottom-40 left-1/4 w-2 h-2 bg-gold-300/40 rounded-full animate-bounce shadow-[0_0_10px_rgba(212,175,55,0.6)]" style={{ animationDelay: '1s', animationDuration: '3.5s' }} />
       </div>
 
-        <div className="flex flex-col items-center w-full z-10 mt-2">
+        <div className="flex flex-col items-center w-full z-10">
           {/* Top Logo */}
           <div className="relative flex justify-center mb-3 sm:mb-4 lg:mb-5 group cursor-pointer">
             <div className="absolute inset-0 bg-[#d4af37] rounded-full blur-[40px] opacity-[0.05] transition-opacity duration-700 group-hover:opacity-[0.3]" />
@@ -87,7 +87,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         </div>
 
         {/* MIDDLE GROUP: Title, Desc, Cards */}
-        <div className="flex flex-col items-center w-full z-10 flex-1 justify-center my-4">
+        <div className="flex flex-col items-center w-full z-10 max-w-[700px]">
           {/* Title */}
           <h1 className="text-center font-bold mb-3 sm:mb-3 lg:mb-4 flex flex-col gap-1 drop-shadow-xl w-full" style={{ color: '#ffffff' }}>
             <span className="text-[20px] md:text-2xl lg:text-3xl uppercase tracking-wide leading-none">
@@ -137,7 +137,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         </div>
 
         {/* BOTTOM GROUP: Button, Footer Box */}
-        <div className="flex flex-col items-center w-full z-10 max-w-[700px] mb-2">
+        <div className="flex flex-col items-center w-full z-10 max-w-[700px]">
           {/* CTA Button */}
           <div className="relative group w-full mb-3 md:mb-5 px-1 md:px-0">
             <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-xl md:rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
