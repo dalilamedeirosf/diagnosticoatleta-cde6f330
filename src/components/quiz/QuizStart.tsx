@@ -7,7 +7,7 @@ interface QuizStartProps {
 
 const QuizStart = ({ onStart }: QuizStartProps) => {
   return (
-    <div className="h-full w-full bg-[#050B14] relative overflow-x-hidden overflow-y-auto font-sans">
+    <div className="absolute inset-0 w-full bg-[#050B14] overflow-x-hidden overflow-y-auto font-sans">
       <div className="min-h-full w-full flex flex-col items-center justify-start md:justify-center py-8">
         {/* Texture Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
