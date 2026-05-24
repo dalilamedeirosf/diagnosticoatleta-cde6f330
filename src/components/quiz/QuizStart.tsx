@@ -76,7 +76,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         </div>
 
         {/* MEIO: Título + Descrição + Cards */}
-        <div className="flex flex-col items-center w-full max-w-[700px] my-auto py-3">
+        <div className="flex flex-col items-center w-full max-w-[700px] mt-1 mb-auto">
           <h1 className="text-center font-bold mb-2 md:mb-4 flex flex-col gap-1 drop-shadow-xl w-full" style={{ color: '#ffffff' }}>
             <span className="text-[24px] md:text-[28px] lg:text-[36px] uppercase tracking-wide leading-none">
               RAIO-X DO ATLETA
