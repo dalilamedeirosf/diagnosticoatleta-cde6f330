@@ -48,7 +48,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
       </div>
 
       {/* === CONTEÚDO PRINCIPAL === */}
-      <div className="min-h-[100dvh] w-full flex flex-col items-center px-[5%] md:px-6 lg:px-8 py-6 md:py-8 relative z-10">
+      <div className="min-h-[100dvh] w-full flex flex-col items-center px-[5%] md:px-6 lg:px-8 pt-6 pb-12 md:py-8 relative z-10">
         
         {/* TOPO: Logo + Tagline */}
         <div className="flex flex-col items-center w-full max-w-[700px] mb-[4vh] md:mb-8">
@@ -129,7 +129,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         </div>
 
         {/* FUNDO: Botão + Frase */}
-        <div className="flex flex-col items-center w-[92%] md:w-full max-w-[700px] gap-3 mt-auto mb-2">
+        <div className="flex flex-col items-center w-[92%] md:w-full max-w-[700px] gap-3 mt-auto mb-6">
           {/* CTA Button */}
           <div className="relative group w-full">
             <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
