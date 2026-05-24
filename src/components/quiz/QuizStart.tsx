@@ -8,7 +8,7 @@ interface QuizStartProps {
 const QuizStart = ({ onStart }: QuizStartProps) => {
   return (
     <div className="h-[100dvh] w-full bg-[#050B14] relative overflow-hidden font-sans">
-      <div className="h-full w-full flex flex-col items-center justify-evenly py-4 px-2 md:py-8 md:px-4">
+      <div className="h-full w-full flex flex-col items-center justify-center py-4 px-2 md:py-8 md:px-4">
         {/* Texture Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]" />
 
@@ -53,20 +53,22 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         <div className="absolute bottom-40 left-1/4 w-2 h-2 bg-gold-300/40 rounded-full animate-bounce shadow-[0_0_10px_rgba(212,175,55,0.6)]" style={{ animationDelay: '1s', animationDuration: '3.5s' }} />
       </div>
 
-        <div className="flex flex-col items-center w-full z-10">
+        {/* Conteúdo único centralizado */}
+        <div className="flex flex-col items-center w-full z-10 max-w-[700px]">
+          
           {/* Top Logo */}
-          <div className="relative flex justify-center mb-3 sm:mb-4 lg:mb-5 group cursor-pointer">
+          <div className="relative flex justify-center mb-4 md:mb-5 group cursor-pointer">
             <div className="absolute inset-0 bg-[#d4af37] rounded-full blur-[40px] opacity-[0.05] transition-opacity duration-700 group-hover:opacity-[0.3]" />
             <img 
               src={logo} 
               alt="Escudo dourado com a letra C estilizada e o texto CRAQUE EM CONSTRUÇÃO" 
-              className="w-16 md:w-28 lg:w-32 relative z-10 transition-transform duration-500 group-hover:scale-105"
+              className="w-20 md:w-28 lg:w-32 relative z-10 transition-transform duration-500 group-hover:scale-105"
               style={{ filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.3))' }}
             />
           </div>
 
           {/* Tagline Topo */}
-          <div className="flex flex-col items-center text-center w-full">
+          <div className="flex flex-col items-center text-center w-full mb-4 md:mb-5">
             <div className="flex items-center justify-center gap-1.5 lg:gap-3 w-full">
               <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" style={{ color: '#d4af37' }} />
               <span 
@@ -84,30 +86,27 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
               Futebol de base
             </span>
           </div>
-        </div>
 
-        {/* MIDDLE GROUP: Title, Desc, Cards */}
-        <div className="flex flex-col items-center w-full z-10 max-w-[700px]">
           {/* Title */}
-          <h1 className="text-center font-bold mb-3 sm:mb-3 lg:mb-4 flex flex-col gap-1 drop-shadow-xl w-full" style={{ color: '#ffffff' }}>
-            <span className="text-[20px] md:text-2xl lg:text-3xl uppercase tracking-wide leading-none">
+          <h1 className="text-center font-bold mb-3 md:mb-4 flex flex-col gap-1 drop-shadow-xl w-full" style={{ color: '#ffffff' }}>
+            <span className="text-[22px] md:text-2xl lg:text-3xl uppercase tracking-wide leading-none">
               RAIO-X DO ATLETA
             </span>
-            <span className="text-[16px] md:text-[24px] lg:text-[34px] leading-tight tracking-tight">
+            <span className="text-[17px] md:text-[24px] lg:text-[34px] leading-tight tracking-tight">
               Descubra em qual momento<br className="hidden md:block"/> processo seu filho atleta se encontra
             </span>
           </h1>
 
           {/* Description */}
           <p 
-            className="text-center text-[11px] md:text-[11px] lg:text-[13px] leading-tight md:leading-relaxed mb-4 sm:mb-5 lg:mb-6 max-w-[650px] px-1 md:px-0"
+            className="text-center text-[11px] md:text-[11px] lg:text-[13px] leading-snug md:leading-relaxed mb-5 md:mb-6 max-w-[650px] px-1 md:px-0"
             style={{ color: '#b3b3b3' }}
           >
             Seu filho treina, joga e sonha em crescer no futebol. Mas será que você sabe exatamente o que está ajudando ou travando a evolução dele? Com o Raio-X do Atleta, você recebe um diagnóstico baseado em critérios reais do futebol de base e entende quais pontos precisam ser ajustados para o seu filho evoluir.
           </p>
 
           {/* Cards */}
-          <div className="grid grid-cols-3 gap-2 md:gap-3 lg:gap-4 w-full px-1 md:px-0 max-w-[700px]">
+          <div className="grid grid-cols-3 gap-2 md:gap-3 lg:gap-4 w-full mb-5 md:mb-6 px-1 md:px-0">
             {[
               { icon: Target, title: "Raio-X\nCompleto", desc: "Entenda o nivel\natual do seu filho." },
               { icon: UserCog, title: "6 Áreas\nAvaliadas", desc: "Técnica, físico,\nmentalidade e mais." },
@@ -134,10 +133,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* BOTTOM GROUP: Button, Footer Box */}
-        <div className="flex flex-col items-center w-full z-10 max-w-[700px]">
           {/* CTA Button */}
           <div className="relative group w-full mb-3 md:mb-5 px-1 md:px-0">
             <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-xl md:rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
@@ -160,7 +156,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
 
           {/* Box Frase Impacto */}
           <div 
-            className="w-full rounded-xl md:rounded-2xl py-3 md:py-4 lg:py-5 px-3 shadow-[0_0_20px_rgba(0,0,0,0.5)] border-[1.5px] backdrop-blur-md self-center"
+            className="w-full rounded-xl md:rounded-2xl py-3 md:py-4 lg:py-5 px-3 shadow-[0_0_20px_rgba(0,0,0,0.5)] border-[1.5px] backdrop-blur-md"
             style={{ backgroundColor: '#300c12', borderColor: '#4a151e' }}
           >
             <p className="text-center text-[10px] md:text-[13px] lg:text-[15px] font-medium leading-snug md:leading-[1.6]" style={{ color: '#ffffff' }}>
@@ -168,6 +164,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
               <span className="font-bold" style={{ color: '#f8a5b2' }}>diagnóstico vira processo.</span>"
             </p>
           </div>
+
         </div>
 
       </div>
