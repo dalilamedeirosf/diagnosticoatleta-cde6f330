@@ -129,7 +129,7 @@ const QuizStart = ({ onStart }: QuizStartProps) => {
         </div>
 
         {/* FUNDO: Botão + Frase */}
-        <div className="flex flex-col items-center w-[92%] md:w-full max-w-[700px] gap-3 mt-auto">
+        <div className="flex flex-col items-center w-[92%] md:w-full max-w-[700px] gap-3 mt-auto mb-2">
           {/* CTA Button */}
           <div className="relative group w-full">
             <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300 animate-pulse" />
