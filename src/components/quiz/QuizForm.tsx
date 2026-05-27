@@ -54,7 +54,7 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-start p-4 relative z-10 animate-fade-in w-full h-full max-h-full overflow-y-auto pt-8 pb-16">
+    <div className="flex-1 flex flex-col items-center justify-start p-4 relative z-10 animate-fade-in w-full py-8 md:py-12 safe-area-bottom">
       <div className="w-full max-w-lg space-y-6">
         
         {/* Texts */}
