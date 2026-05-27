@@ -419,12 +419,12 @@ export const quizBlocks: QuizBlock[] = [
       {
         id: 24,
         question: "Hoje, o maior travamento do atleta é:",
+        isMultiSelect: true,
         options: [
           { label: "Falta de direção", value: 1, image: "q24-direction" },
           { label: "Falta de confiança", value: 2, image: "q24-confidence" },
           { label: "Falta de preparo físico", value: 3, image: "q24-physical" },
           { label: "Ambiente confuso", value: 4, image: "q24-environment" },
-          { label: "Tudo um pouco", value: 0, image: "q24-all" },
         ],
       },
       {
