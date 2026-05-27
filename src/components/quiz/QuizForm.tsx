@@ -161,7 +161,7 @@ const QuizForm = ({ onComplete }: QuizFormProps) => {
                     <SelectContent className="bg-[#0b1426] border-white/10 text-white shadow-xl rounded-xl">
                       <SelectItem value="Direito" className="focus:bg-gold/20 focus:text-gold-100">Direito</SelectItem>
                       <SelectItem value="Esquerdo" className="focus:bg-gold/20 focus:text-gold-100">Esquerdo</SelectItem>
-                      <SelectItem value="Ambos" className="focus:bg-gold/20 focus:text-gold-100">Ambos</SelectItem>
+                      <SelectItem value="Ambidestro" className="focus:bg-gold/20 focus:text-gold-100">Ambidestro</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
