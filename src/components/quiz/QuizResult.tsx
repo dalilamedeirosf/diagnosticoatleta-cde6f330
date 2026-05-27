@@ -67,9 +67,9 @@ const Sparkline = ({ values, color, id }: { values: number[]; color: string; id:
 };
 
 const RadarChart = ({ scores }: { scores: { title: string; percentage: number; color: string }[] }) => {
-  const cx = 75;
-  const cy = 75;
-  const r = 42;
+  const cx = 80;
+  const cy = 80;
+  const r = 46;
   const axesCount = 6;
 
   // Angles for the 6 axes: Perfil, Performance, Familia, Objetivos, Rotina, Mentalidade
@@ -109,22 +109,22 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
 
   const userPolygonPointsStr = userPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
 
-  // Labels positioning offsets for cx=75, cy=75, r=42
+  // Labels positioning offsets for cx=80, cy=80, r=46
   const labelOffsets = [
-    { x: cx, y: cy - r - 7, anchor: "middle" }, // Perfil
-    { x: cx + (r + 7) * Math.cos(angles[1]), y: cy + (r + 7) * Math.sin(angles[1]) + 2, anchor: "start" }, // Performance
-    { x: cx + (r + 7) * Math.cos(angles[2]), y: cy + (r + 7) * Math.sin(angles[2]) + 3, anchor: "start" }, // Familia
-    { x: cx, y: cy + r + 11, anchor: "middle" }, // Objetivos
-    { x: cx + (r + 7) * Math.cos(angles[4]), y: cy + (r + 7) * Math.sin(angles[4]) + 3, anchor: "end" }, // Rotina
-    { x: cx + (r + 7) * Math.cos(angles[5]), y: cy + (r + 7) * Math.sin(angles[5]) + 2, anchor: "end" }, // Mentalidade
+    { x: cx, y: cy - r - 8, anchor: "middle" }, // Perfil
+    { x: cx + (r + 10) * Math.cos(angles[1]), y: cy + (r + 10) * Math.sin(angles[1]) + 3, anchor: "start" }, // Performance
+    { x: cx + (r + 10) * Math.cos(angles[2]), y: cy + (r + 10) * Math.sin(angles[2]) + 4, anchor: "start" }, // Familia
+    { x: cx, y: cy + r + 13, anchor: "middle" }, // Objetivos
+    { x: cx + (r + 10) * Math.cos(angles[4]), y: cy + (r + 10) * Math.sin(angles[4]) + 4, anchor: "end" }, // Rotina
+    { x: cx + (r + 10) * Math.cos(angles[5]), y: cy + (r + 10) * Math.sin(angles[5]) + 3, anchor: "end" }, // Mentalidade
   ];
 
   return (
-    <div className="relative w-[140px] h-[140px] mx-auto flex-shrink-0 flex items-center justify-center">
-      <svg className="w-full h-full overflow-visible" viewBox="0 0 150 150">
+    <div className="relative w-[170px] h-[170px] mx-auto flex-shrink-0 flex items-center justify-center">
+      <svg className="w-full h-full overflow-visible" viewBox="0 0 160 160">
         <defs>
           <radialGradient id="radarRadialGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.15" />
             <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.0" />
           </radialGradient>
         </defs>
@@ -138,8 +138,8 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
             key={idx}
             points={ringPoints}
             fill="none"
-            stroke="rgba(212, 175, 55, 0.12)"
-            strokeWidth="0.75"
+            stroke="rgba(212, 175, 55, 0.18)"
+            strokeWidth="0.8"
           />
         ))}
 
@@ -154,8 +154,8 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
               y1={cy}
               x2={x}
               y2={y}
-              stroke="rgba(212, 175, 55, 0.12)"
-              strokeWidth="0.75"
+              stroke="rgba(212, 175, 55, 0.18)"
+              strokeWidth="0.8"
               strokeDasharray="2,2"
             />
           );
@@ -164,10 +164,10 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
         {/* User Data Area */}
         <polygon
           points={userPolygonPointsStr}
-          fill="rgba(212, 175, 55, 0.12)"
+          fill="rgba(212, 175, 55, 0.2)"
           stroke="#D4AF37"
-          strokeWidth="1.25"
-          className="drop-shadow-[0_0_4px_rgba(212, 175, 55, 0.25)]"
+          strokeWidth="1.5"
+          className="drop-shadow-[0_0_5px_rgba(212,175,55,0.35)]"
         />
 
         {/* User Data Dots */}
@@ -176,10 +176,10 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
             key={idx}
             cx={p.x}
             cy={p.y}
-            r="2.5"
+            r="2.8"
             fill={p.color}
             stroke="#050B14"
-            strokeWidth="0.5"
+            strokeWidth="0.6"
             className="drop-shadow-[0_0_3px_currentColor]"
           />
         ))}
@@ -191,7 +191,7 @@ const RadarChart = ({ scores }: { scores: { title: string; percentage: number; c
             x={offset.x}
             y={offset.y}
             textAnchor={offset.anchor}
-            className="text-[8px] font-bold fill-white/80 tracking-wider"
+            className="text-[9.5px] font-extrabold fill-white/95 tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"
           >
             {orderedKeys[idx]}
           </text>
@@ -459,27 +459,32 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 via-transparent to-gold-600/20 rounded-3xl blur-xl opacity-30" />
               
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-4 border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-                <h4 className="text-[10px] font-black text-gold/90 tracking-[0.15em] text-center uppercase mb-3">
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-5 border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                <h4 className="text-[10px] font-black text-gold/90 tracking-[0.15em] text-center uppercase mb-4">
                   Visão Geral do Perfil (Radar)
                 </h4>
 
                 {/* Row: Ponto Forte, Radar Chart, Área de Foco */}
-                <div className="flex items-center justify-between gap-1.5 sm:gap-3 w-full">
+                <div className="flex items-center justify-between gap-2 sm:gap-4 w-full">
                   {/* Ponto Forte Card (Left) */}
-                  <div className="flex-1 max-w-[100px] relative group shrink-0">
+                  <div className="flex-1 max-w-[125px] sm:max-w-[135px] relative group shrink-0">
                     <div className="absolute -inset-0.5 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl blur opacity-35" />
-                    <div className="relative bg-emerald-950/90 backdrop-blur-xl rounded-xl p-2 border border-emerald-400/40 text-left min-h-[85px] flex flex-col justify-between shadow-lg">
+                    <div className="relative bg-emerald-950/90 backdrop-blur-xl rounded-xl p-3 border border-emerald-400/40 text-left min-h-[105px] flex flex-col justify-between shadow-lg">
                       <div>
-                        <div className="flex items-center gap-1 mb-1">
-                          <Zap className="w-3 h-3 text-emerald-400 shrink-0" />
-                          <span className="font-bold text-emerald-400 text-[9px] tracking-wide uppercase shrink-0">Ponto Forte</span>
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <span className="font-extrabold text-emerald-400 text-[10px] tracking-wider uppercase shrink-0">Ponto Forte</span>
                         </div>
-                        <p className="text-[9px] text-emerald-100/90 font-bold leading-tight truncate">
-                          {strongestArea.block.emoji} {getShortTitle(strongestArea.block.title)}
-                        </p>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <span className={`w-2 h-2 rounded-full ${blockColors[strongestArea.block.color].bg} shadow-[0_0_6px_currentColor]`} />
+                          <p className="text-xs text-white font-extrabold leading-tight truncate">
+                            {getShortTitle(strongestArea.block.title)}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-base font-black text-emerald-400 leading-none mt-1">{strongestArea.percentage}%</p>
+                      <p className="text-2xl font-black text-emerald-400 leading-none mt-2 drop-shadow-[0_0_6px_rgba(16,185,129,0.4)]">
+                        {strongestArea.percentage}%
+                      </p>
                     </div>
                   </div>
 
@@ -489,19 +494,24 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                   </div>
 
                   {/* Área de Foco Card (Right) */}
-                  <div className="flex-1 max-w-[100px] relative group shrink-0">
+                  <div className="flex-1 max-w-[125px] sm:max-w-[135px] relative group shrink-0">
                     <div className="absolute -inset-0.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl blur opacity-35" />
-                    <div className="relative bg-orange-950/90 backdrop-blur-xl rounded-xl p-2 border border-orange-400/40 text-left min-h-[85px] flex flex-col justify-between shadow-lg">
+                    <div className="relative bg-orange-950/90 backdrop-blur-xl rounded-xl p-3 border border-orange-400/40 text-left min-h-[105px] flex flex-col justify-between shadow-lg">
                       <div>
-                        <div className="flex items-center gap-1 mb-1">
-                          <Target className="w-3 h-3 text-orange-400 shrink-0" />
-                          <span className="font-bold text-orange-400 text-[9px] tracking-wide uppercase shrink-0">Área de Foco</span>
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                          <Target className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+                          <span className="font-extrabold text-orange-400 text-[10px] tracking-wider uppercase shrink-0">Área de Foco</span>
                         </div>
-                        <p className="text-[9px] text-orange-100/90 font-bold leading-tight truncate">
-                          {weakestArea.block.emoji} {getShortTitle(weakestArea.block.title)}
-                        </p>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <span className={`w-2 h-2 rounded-full ${blockColors[weakestArea.block.color].bg} shadow-[0_0_6px_currentColor]`} />
+                          <p className="text-xs text-white font-extrabold leading-tight truncate">
+                            {getShortTitle(weakestArea.block.title)}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-base font-black text-orange-400 leading-none mt-1">{weakestArea.percentage}%</p>
+                      <p className="text-2xl font-black text-orange-400 leading-none mt-2 drop-shadow-[0_0_6px_rgba(249,115,22,0.4)]">
+                        {weakestArea.percentage}%
+                      </p>
                     </div>
                   </div>
                 </div>
