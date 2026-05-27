@@ -199,9 +199,7 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                   <img src={logo} alt="Craque em Construção" className="h-10 object-contain opacity-90 drop-shadow-md" />
                 </div>
               </div>
-            </div>
-
-            {/* Block Scores Grid - Holographic */}
+                        {/* Block Scores Grid - Holographic */}
             <div className="relative flex-1">
               <div className="absolute -inset-1 bg-gradient-to-br from-gold/30 via-transparent to-gold-600/30 rounded-3xl blur-xl opacity-30" />
               
@@ -211,30 +209,80 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
                   <h3 className="font-bold text-sm text-white tracking-wide">Pontuação por Área</h3>
                 </div>
                 
+                {/* Global Gradients for Radial Charts */}
+                <svg className="absolute w-0 h-0 pointer-events-none">
+                  <defs>
+                    <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#10B981" />
+                      <stop offset="100%" stopColor="#34D399" />
+                    </linearGradient>
+                    <linearGradient id="grad-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#F59E0B" />
+                      <stop offset="100%" stopColor="#FBBF24" />
+                    </linearGradient>
+                    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#0EA5E9" />
+                      <stop offset="100%" stopColor="#38BDF8" />
+                    </linearGradient>
+                    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8B5CF6" />
+                      <stop offset="100%" stopColor="#A78BFA" />
+                    </linearGradient>
+                    <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#F97316" />
+                      <stop offset="100%" stopColor="#FB923C" />
+                    </linearGradient>
+                    <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#EF4444" />
+                      <stop offset="100%" stopColor="#F87171" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
                 <div className="grid grid-cols-2 gap-3">
                   {blockScores.map(({ block, percentage }) => (
                     <div key={block.id} className="relative group">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${blockColorMap[block.color].gradient} rounded-xl blur-lg opacity-20`} />
-                      <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-3 flex flex-col border border-white/15 shadow-lg">
-                        <div className="flex items-center gap-2 mb-1.5">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${blockColorMap[block.color].gradient} rounded-xl blur-lg opacity-25`} />
+                      <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-3 flex flex-col justify-between items-center text-center border border-white/15 shadow-lg min-h-[145px] hover:scale-[1.02] transition-transform">
+                        
+                        <div className="flex flex-col items-center gap-1">
                           <span className="text-lg">{block.emoji}</span>
-                          <span className="text-sm font-semibold text-white/95 leading-tight tracking-wide">{getShortTitle(block.title)}</span>
+                          <span className="text-xs font-bold text-white/95 leading-tight tracking-wide">{getShortTitle(block.title)}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-black/30 rounded-full h-2 overflow-hidden">
-                            <div 
-                              className={`h-full rounded-full bg-gradient-to-r ${blockColorMap[block.color].gradient}`}
-                              style={{ width: `${percentage}%` }}
+                        
+                        {/* Radial Progress Chart */}
+                        <div className="relative w-14 h-14 mt-1.5 flex-shrink-0">
+                          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 40 40">
+                            <circle 
+                              cx="20" 
+                              cy="20" 
+                              r="16" 
+                              stroke="rgba(255,255,255,0.06)" 
+                              strokeWidth="3.5" 
+                              fill="none" 
                             />
+                            <circle 
+                              cx="20" 
+                              cy="20" 
+                              r="16" 
+                              stroke={`url(#grad-${block.color})`}
+                              strokeWidth="3.5" 
+                              fill="none"
+                              strokeDasharray={`${percentage * 1.0053} 100.53`} 
+                              strokeLinecap="round" 
+                            />
+                          </svg>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-[11px] font-black text-white">{percentage}%</span>
                           </div>
-                          <span className={`text-sm font-black bg-gradient-to-r ${blockColorMap[block.color].gradient} bg-clip-text text-transparent`}>{percentage}%</span>
                         </div>
+
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </div>       </div>
 
             {/* Insights - Neon Cards */}
             <div className="grid grid-cols-2 gap-3">
