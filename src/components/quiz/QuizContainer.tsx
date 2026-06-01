@@ -7,9 +7,10 @@ import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizResult from "./QuizResult";
 import QuizForm from "./QuizForm";
+import QuizTestimonials from "./QuizTestimonials";
 import logo from "@/assets/craque-em-contrução1.png";
 
-type QuizState = "start" | "form" | "questions" | "result";
+type QuizState = "start" | "form" | "questions" | "testimonials" | "result";
 
 const QuizContainer = () => {
   const [quizState, setQuizState] = useState<QuizState>("start");
@@ -138,7 +139,7 @@ const QuizContainer = () => {
     // Quiz completed
     else {
       sendDiagnosticToWebhook();
-      setQuizState("result");
+      setQuizState("testimonials");
     }
   };
 
@@ -179,6 +180,10 @@ const QuizContainer = () => {
 
   if (quizState === "start") {
     return <QuizStart onStart={handleStart} />;
+  }
+
+  if (quizState === "testimonials") {
+    return <QuizTestimonials onContinue={() => setQuizState("result")} />;
   }
 
   if (quizState === "result") {
