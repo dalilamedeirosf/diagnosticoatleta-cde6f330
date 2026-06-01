@@ -11,7 +11,7 @@ interface QuizResultProps {
   onRestart: () => void;
 }
 
-const CHECKOUT_URL = "https://pay.kiwify.com.br/xxxxx"; // Substitua pelo link de checkout real do Kiwify ou WhatsApp
+const CHECKOUT_URL = "https://pay.hotmart.com/D106090076A";
 
 const blockHexColors: Record<string, string> = {
   green: "#10B981",
@@ -216,7 +216,7 @@ const getRecommendationText = (blockTitle: string) => {
 };
 
 const generatePersuasiveText = (athleteName: string, overallScore: number) => {
-  return `Olá! Como responsável pelo atleta ${athleteName}, você acaba de dar um passo fundamental para o futuro dele no futebol. 🚀 Os gráficos e o radar acima mostram uma visão geral e clara sobre o momento atual do atleta na base (com um resultado geral de ${overallScore}%), mas a verdade é que existem detalhes fundamentais sobre o desempenho dele que não aparecem de forma simples nos números. 📊
+  return `Como responsável pelo atleta ${athleteName}, você acaba de dar um passo fundamental para o futuro dele no futebol. 🚀 Os gráficos e o radar acima mostram uma visão geral e clara sobre o momento atual do atleta na base (com um resultado geral de ${overallScore}%), mas a verdade é que existem detalhes fundamentais sobre o desempenho dele que não aparecem de forma simples nos números. 📊
 
 Seu filho possui pontos fortes ocultos e potenciais de evolução que precisam ser trabalhados com precisão. Da mesma forma, existem pequenos bloqueios silenciosos na mentalidade, rotina ou leitura de jogo que podem travar a transição dele para grandes clubes se não forem corrigidos a tempo. 🧠⚡
 
@@ -614,15 +614,15 @@ const QuizResult = ({ answers, athleteName, onRestart }: QuizResultProps) => {
                 <div className="flex items-start gap-2.5 text-left bg-black/40 rounded-xl p-3.5 border border-white/5">
                   <span className="text-xl shrink-0">📱</span>
                   <p className="text-[11px] sm:text-xs text-white/90 leading-relaxed font-bold">
-                    Relatório elaborado manualmente por nossa equipe e entregue diretamente no WhatsApp em até 1 hora.
+                    Relatório elaborado manualmente por nossa equipe e entregue diretamente no WhatsApp em até 3 horas.
                   </p>
                 </div>
 
                 <div className="flex flex-col items-center gap-0.5">
-                  <span className="text-[10px] text-white/50 uppercase tracking-widest font-black">Investimento Único</span>
+                  <span className="text-[10px] text-white/50 uppercase tracking-widest font-black">Investimento</span>
                   <div className="flex items-center gap-1.5">
                     <span className="text-gold text-lg shrink-0">💰</span>
-                    <span className="text-2xl font-black text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">R$ 57,00</span>
+                    <span className="text-2xl font-black text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">5x de R$ 12,62</span>
                   </div>
                 </div>
 
@@ -634,24 +634,11 @@ const QuizResult = ({ answers, athleteName, onRestart }: QuizResultProps) => {
                     size="lg"
                     className="relative w-full h-14 text-[10px] sm:text-xs font-black bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-95 hover:text-black rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all active:scale-[0.98] border-0 flex items-center justify-center gap-2 uppercase tracking-wide"
                   >
-                    <span>🚀</span> Quero o Relatório Completo do Atleta por R$ 57
+                    <span>🚀</span> Quero o Relatório Completo do Atleta por 5x de 12,62
                   </Button>
                 </div>
 
               </div>
-            </div>
-
-            {/* Restart Button - Premium Neon */}
-            <div className="relative group mt-1">
-              <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity animate-pulse" />
-              <Button 
-                onClick={onRestart}
-                size="lg"
-                className="relative w-full h-12 text-sm font-bold bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-90 hover:text-black rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all active:scale-[0.98] border-0 [-webkit-appearance:none]"
-              >
-                <RefreshCw className="w-4 h-4 mr-2" />
-                Refazer Diagnóstico
-              </Button>
             </div>
             
             {/* Footer */}
