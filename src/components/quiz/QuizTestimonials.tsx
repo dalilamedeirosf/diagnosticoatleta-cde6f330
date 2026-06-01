@@ -8,6 +8,11 @@ import depoCaio from "@/assets/depo-caio.jpg";
 import depoDavi from "@/assets/depo-davi.jpg";
 import depoNickollas from "@/assets/depo-nickollas.jpg";
 import depoLorenzo from "@/assets/depo-lorenzo.jpg";
+import depoEduardo from "@/assets/depo-eduardo.jpg";
+import depoSamurai from "@/assets/depo-samurai.jpg";
+import depoJoaoMarcos from "@/assets/depo-joaomarcos.jpg";
+import depoArthur from "@/assets/depo-arthur.jpg";
+import depoAdryan from "@/assets/depo-adryan.jpg";
 
 interface QuizTestimonialsProps {
   onContinue: () => void;
@@ -20,6 +25,11 @@ const QuizTestimonials = ({ onContinue }: QuizTestimonialsProps) => {
     { src: depoDavi, alt: "Davi" },
     { src: depoNickollas, alt: "Nickollas" },
     { src: depoLorenzo, alt: "Lorenzo Cunha" },
+    { src: depoEduardo, alt: "Eduardo" },
+    { src: depoSamurai, alt: "Samurai" },
+    { src: depoJoaoMarcos, alt: "João Marcos" },
+    { src: depoArthur, alt: "Arthur" },
+    { src: depoAdryan, alt: "Adryan" },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
