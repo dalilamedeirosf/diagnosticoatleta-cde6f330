@@ -7,8 +7,11 @@ import { quizBlocks } from "@/data/quizQuestions";
 
 interface QuizResultProps {
   answers: Record<number, number | number[]>;
+  athleteName: string;
   onRestart: () => void;
 }
+
+const CHECKOUT_URL = "https://pay.kiwify.com.br/xxxxx"; // Substitua pelo link de checkout real do Kiwify ou WhatsApp
 
 const blockHexColors: Record<string, string> = {
   green: "#10B981",
@@ -212,7 +215,15 @@ const getRecommendationText = (blockTitle: string) => {
   return `Focar em ${blockTitle} pode acelerar o desenvolvimento.`;
 };
 
-const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
+const generatePersuasiveText = (athleteName: string, overallScore: number) => {
+  return `Olá! Como responsável pelo atleta ${athleteName}, você acaba de dar um passo fundamental para o futuro dele no futebol. 🚀 Os gráficos e o radar acima mostram uma visão geral e clara sobre o momento atual do atleta na base (com um resultado geral de ${overallScore}%), mas a verdade é que existem detalhes fundamentais sobre o desempenho dele que não aparecem de forma simples nos números. 📊
+
+Seu filho possui pontos fortes ocultos e potenciais de evolução que precisam ser trabalhados com precisão. Da mesma forma, existem pequenos bloqueios silenciosos na mentalidade, rotina ou leitura de jogo que podem travar a transição dele para grandes clubes se não forem corrigidos a tempo. 🧠⚡
+
+Cada comportamento em campo e detalhe de suporte familiar fazem a diferença. Queremos te mostrar exatamente o que está limitando ou impulsionando o desenvolvimento do ${athleteName}. Para acelerar essa evolução e prepará-lo de verdade, é indispensável analisar as entrelinhas e agir com um plano direcionado. 📈🎯`;
+};
+
+const QuizResult = ({ answers, athleteName, onRestart }: QuizResultProps) => {
   // Fire confetti on mount
   useEffect(() => {
     const duration = 3000;
@@ -524,10 +535,109 @@ const QuizResult = ({ answers, onRestart }: QuizResultProps) => {
               <div className="relative bg-white/5 backdrop-blur-xl rounded-xl p-3.5 border border-amber-400/20 shadow-md">
                 <div className="flex items-start gap-2.5">
                   <Star className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5 drop-shadow-[0_0_6px_rgba(251,191,36,0.6)]" />
-                  <p className="text-xs text-white/90 leading-relaxed font-semibold">
+                  <p className="text-xs text-white/90 leading-relaxed font-semibold text-left">
                     {getRecommendationText(weakestArea.block.title)}
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Persuasive Text Card */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-gold/10 to-gold-600/10 rounded-2xl blur-md opacity-30" />
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-5 border border-white/10 text-white/90 text-xs sm:text-sm leading-relaxed whitespace-pre-line font-semibold shadow-xl text-left">
+                {generatePersuasiveText(athleteName, overallPercentage)}
+              </div>
+            </div>
+
+            {/* Comparison & Benefits Section */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-gold/20 via-transparent to-gold-600/20 rounded-2xl blur-xl opacity-20" />
+              
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-5 border border-white/15 shadow-xl flex flex-col gap-4">
+                {/* What is NOT shown */}
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-orange-400 flex items-center gap-1.5 mb-2.5 uppercase tracking-wide">
+                    <span>⚠️</span> O que este diagnóstico gratuito NÃO mostra sobre {athleteName}:
+                  </h4>
+                  <ul className="flex flex-col gap-2 pl-2">
+                    <li className="text-[11px] sm:text-xs text-white/85 flex items-start gap-2 font-semibold">
+                      <span className="text-orange-400 shrink-0 mt-0.5">•</span>
+                      <span>Os fatores específicos que podem estar limitando sua evolução esportiva.</span>
+                    </li>
+                    <li className="text-[11px] sm:text-xs text-white/85 flex items-start gap-2 font-semibold">
+                      <span className="text-orange-400 shrink-0 mt-0.5">•</span>
+                      <span>Os comportamentos identificados em cada área avaliada.</span>
+                    </li>
+                    <li className="text-[11px] sm:text-xs text-white/85 flex items-start gap-2 font-semibold">
+                      <span className="text-orange-400 shrink-0 mt-0.5">•</span>
+                      <span>Os pontos fortes que podem ser potencializados com maior intensidade.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Horizontal Divider */}
+                <div className="h-px bg-white/10 w-full" />
+
+                {/* What the complete report shows */}
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-1.5 mb-3 uppercase tracking-wide">
+                    <span>🔎</span> Receba o Relatório Completo Personalizado:
+                  </h4>
+                  <ul className="flex flex-col gap-2.5">
+                    {[
+                      "Diagnóstico detalhado de cada área avaliada",
+                      "Principais talentos e potencialidades identificadas",
+                      "Pontos de atenção e possíveis bloqueios de desempenho",
+                      "Análise comportamental e perfil esportivo do atleta",
+                      "Avaliação da mentalidade competitiva"
+                    ].map((benefit, idx) => (
+                      <li key={idx} className="text-[11px] sm:text-xs text-white/90 flex items-center gap-2 font-semibold">
+                        <span className="text-emerald-400 shrink-0">✅</span>
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[10px] text-gold/80 italic mt-3 font-bold tracking-wider uppercase pl-6">
+                    E muito mais...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Offer Card & Checkout CTA */}
+            <div className="relative group">
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-2xl blur-lg opacity-40 animate-pulse" />
+              
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-2xl p-5 border border-[#d4af37]/45 shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col gap-4 text-center">
+                
+                <div className="flex items-start gap-2.5 text-left bg-black/40 rounded-xl p-3.5 border border-white/5">
+                  <span className="text-xl shrink-0">📱</span>
+                  <p className="text-[11px] sm:text-xs text-white/90 leading-relaxed font-bold">
+                    Relatório elaborado manualmente por nossa equipe e entregue diretamente no WhatsApp em até 1 hora.
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center gap-0.5">
+                  <span className="text-[10px] text-white/50 uppercase tracking-widest font-black">Investimento Único</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-gold text-lg shrink-0">💰</span>
+                    <span className="text-2xl font-black text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">R$ 57,00</span>
+                  </div>
+                </div>
+
+                {/* Buy Button */}
+                <div className="relative group mt-1">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-gold-400 via-gold to-gold-600 rounded-xl blur-md opacity-60 group-hover:opacity-80 transition-opacity" />
+                  <Button 
+                    onClick={() => window.open(CHECKOUT_URL, "_blank")}
+                    size="lg"
+                    className="relative w-full h-14 text-[10px] sm:text-xs font-black bg-gradient-to-r from-gold-400 via-gold to-gold-600 text-black hover:opacity-95 hover:text-black rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all active:scale-[0.98] border-0 flex items-center justify-center gap-2 uppercase tracking-wide"
+                  >
+                    <span>🚀</span> Quero o Relatório Completo do Atleta por R$ 57
+                  </Button>
+                </div>
+
               </div>
             </div>
 

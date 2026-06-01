@@ -187,7 +187,7 @@ const QuizContainer = () => {
   }
 
   if (quizState === "result") {
-    return <QuizResult answers={answers} onRestart={handleRestart} />;
+    return <QuizResult answers={answers} athleteName={formData?.athleteName || "Atleta"} onRestart={handleRestart} />;
   }
 
   return (
